@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ergast API test - JSON</title>
+	</head>
+
+	<body>
+
+		<h1>Ergast API test</h1>
+
+		<h2>Formula 1 Driver's and Constructor's Champions, by year</h2>
+
+		<table id="demo">
+			<tr>
+				<th>Season</th>
+				<th>Driver</th>
+				<th>Constructor</th>
+			</tr>
+
+		</table>
+
+		<script>
+
+			var demo = document.getElementById("demo")
+
+			var xmlhttp = new XMLHttpRequest()
+			xmlhttp.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+			        myObj = JSON.parse(this.responseText)
+
+			        var num_seasons = myObj.MRData.StandingsTable.StandingsLists.length
+			        
+			        for (var i = 0; i < num_seasons; i++) {
+				        demo.innerHTML += "<tr><td>" + myObj.MRData.StandingsTable.StandingsLists[i].season + "</td><td>" + myObj.MRData.StandingsTable.StandingsLists[i].DriverStandings[0].Driver.familyName + "</td><td>" + myObj.MRData.StandingsTable.StandingsLists[i].DriverStandings[0].Constructors[0].name + "</td></tr>"
+			        }
+			    }
+			}
+			xmlhttp.open("GET", "http://ergast.com/api/f1/driverStandings/1.json?limit=100", true)
+			xmlhttp.send()
+
+		</script>
+
+	</body>
+</html>
