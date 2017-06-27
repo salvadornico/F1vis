@@ -1,42 +1,40 @@
 <?php
 
-	// Open SQL connection
-	$host = 'localhost';
-	$sql_username = 'root';
-	$sql_password = '';
-	$database = 'f1db';
-	$conn = mysqli_connect($host, $sql_username, $sql_password, $database);
+	require_once 'lib.php';
 
-	// Set up query
-	function query_sql($query) {
-		global $conn;
-		$result = mysqli_query($conn, $query);
-		return $result;
+	$debuts = [];
+
+	$result = query_sql("SELECT CONCAT(drivers.forename, ' ', drivers.surname) AS 'driver_name', 
+		min(races.date) AS 'debut'
+		FROM driverstandings JOIN drivers ON drivers.driverId = driverstandings.driverId
+		JOIN races ON races.raceId = driverstandings.raceId
+		GROUP BY driver_name ORDER BY debut DESC");
+
+	if (mysqli_num_rows($result) > 0) {
+		while ($row = mysqli_fetch_assoc($result)) {
+			extract($row);
+
+			// extract year from debut
+			$date_arr = explode('-', $debut);
+			$debut = $date_arr[0];
+
+			$new_driver = [utf8_encode($driver_name) => $debut];
+			$debuts[] = $new_driver;
+		}
 	}
 
-	function translate_finish($positionText) {
-		switch ($positionText) {
-			case 'R':
-				return 'Retired';
-				break;
-			case 'D':
-				return 'Disqualified';
-				break;
-			case 'E':
-				return 'Excluded';
-				break;
-			case 'W':
-				return 'Withdrawn';
-				break;
-			case 'F':
-				return 'Failed to qualify';
-				break;
-			case 'N':
-				return 'Not classified';
-				break;
-			default:
-				return $positionText;
-				break;
+	// merge drivers with same year debut in array
+	$collated_debuts = [];
+	foreach ($debuts as $debut) {
+		foreach ($debut as $driver => $year) {
+			// if year is in array
+			if (searchForYear($year, $collated_debuts)) {
+				// append driver to correct year
+				array_push($collated_debuts[$year], $driver);
+			} else {
+				// create new year entry for array with driver
+				$collated_debuts[$year] = [$driver];			
+			}
 		}
 	}
 
@@ -53,40 +51,24 @@
 
 		<h1>Ergast Formula 1 database test</h1>
 
-		<h2>Finishing Positions of Ayrton Senna</h2>
+		<h2>Driver Debuts</h2>
 
 		<table>
 			<tr>
-				<th>Grand Prix</th>
-				<th>Qualified</th>
-				<th>Finish</th>
-				<th>Constructor</th>
+				<th>Year</th>
+				<th>Drivers</th>
 			</tr>
 
-			<?php
-
-				$race_results = [];
-
-				$result = query_sql("SELECT CONCAT(races.year, ' ', races.name) as grand_prix, results.grid, results.positionText, constructors.name 
-					FROM results join races on races.raceId = results.raceId join constructors on constructors.constructorId = results.constructorId 
-					WHERE results.driverId = 102 ORDER BY races.year, races.round");
-
-				if (mysqli_num_rows($result) > 0) {
-					while ($row = mysqli_fetch_assoc($result)) {
-						extract($row);
-
-						echo "<tr>
-								<td>$grand_prix</td>
-								<td>$grid</td>
-								<td>".translate_finish($positionText)."</td>
-								<td>$name</td>
-							</tr>";
-
-						$new_result = [$grand_prix, $grid, translate_finish($positionText), $name];
-						$race_results[] = $new_result;
-					}
+			<?php 
+				foreach ($collated_debuts as $year => $drivers) {
+					echo "<tr>
+							<td>$year</td>
+							<td>";
+							foreach ($drivers as $driver) {
+								echo "$driver<br>";
+							}
+					echo "</td></tr>";
 				}
-
 			?>
 
 		</table>
@@ -94,3 +76,10 @@
 	</body>
 
 </html>
+
+<?php
+
+// Driver debut SQL query:
+
+
+?>
