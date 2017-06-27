@@ -1,48 +1,10 @@
 <?php
 
-	// Open SQL connection
-	$host = 'localhost';
-	$sql_username = 'root';
-	$sql_password = '';
-	$database = 'f1db';
-	$conn = mysqli_connect($host, $sql_username, $sql_password, $database);
-
-	// Set up query
-	function query_sql($query) {
-		global $conn;
-		$result = mysqli_query($conn, $query);
-		return $result;
-	}
-
-	function translate_finish($positionText) {
-		switch ($positionText) {
-			case 'R':
-				return 'Retired';
-				break;
-			case 'D':
-				return 'Disqualified';
-				break;
-			case 'E':
-				return 'Excluded';
-				break;
-			case 'W':
-				return 'Withdrawn';
-				break;
-			case 'F':
-				return 'Failed to qualify';
-				break;
-			case 'N':
-				return 'Not classified';
-				break;
-			default:
-				return $positionText;
-				break;
-		}
-	}
+	require_once 'lib.php';
 
 	$race_results = [];
 
-	$result = query_sql("SELECT CONCAT(races.year, ' ', races.name) as grand_prix, results.grid, results.positionText, constructors.name 
+	$result = query_sql("SELECT CONCAT(races.year, ' ', races.name) as grand_prix, results.grid, results.positionText, constructors.name , results.position
 		FROM results join races on races.raceId = results.raceId join constructors on constructors.constructorId = results.constructorId 
 		WHERE results.driverId = 102 ORDER BY races.year, races.round");
 
@@ -50,10 +12,26 @@
 		while ($row = mysqli_fetch_assoc($result)) {
 			extract($row);
 
-			$new_result = [$grand_prix, $grid, translate_finish($positionText), $name];
+			// convert null values to zero
+			if ($position == null) {
+				$position = 0;
+			}
+
+			$new_result = [
+				'race' => $grand_prix, 
+				'grid' => intval($grid), 
+				'posText' => translate_finish($positionText), 
+				'team' => $name, 
+				'posNum' => intval($position)
+				];
 			$race_results[] = $new_result;
 		}
 	}
+
+	// Export to JSON
+	$fp = fopen('results.json', 'w');
+	fwrite($fp, json_encode($race_results, JSON_PRETTY_PRINT));
+	fclose($fp);
 
 ?>
 
@@ -61,7 +39,15 @@
 <html>
 
 	<head>
+
 		<title>Ergast Formula 1 database test - mySQL</title>
+
+		<!-- Materialize CSS -->
+  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+
+  		<!-- Custom CSS -->
+		<link rel="stylesheet" type="text/css" href="styles.css">
+
 	</head>
 
 	<body>
@@ -70,17 +56,13 @@
 
 		<h2>Finishing Positions of Ayrton Senna</h2>
 
-		<div id="graph_test">
+		<div id="graph" class="responsive-table clear">
 			
-			<?php 
-
-
-
-			?>
+			<!-- Content inserted by JS -->
 
 		</div>
 
-		<table>
+		<table id="resultsTable">
 			<tr>
 				<th>Grand Prix</th>
 				<th>Qualified</th>
@@ -88,20 +70,18 @@
 				<th>Constructor</th>
 			</tr>
 
-			<?php
-
-				foreach ($race_results as $result) {
-					echo "<tr>
-								<td>$result[0]</td>
-								<td>$result[1]</td>
-								<td>$result[2]</td>
-								<td>$result[3]</td>
-							</tr>";
-				}
-
-			?>
+			<!-- Content inserted by JS -->
 
 		</table>
+
+		<!-- jQuery -->
+	    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+		<!-- Materialize JS -->
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+	  	<!-- Custom JS for driver info page -->
+	  	<script src="driverPage.js"></script>
 
 	</body>
 

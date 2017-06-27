@@ -1,0 +1,30 @@
+* {
+	position: relative;
+}
+
+.clear:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#graph_test {
+	position: relative;
+	border: 1px solid black;
+	padding: 20px;
+}
+
+.data-row {
+	position: relative;
+	width: 80%;
+	border: 1px solid black;
+	height: 60px;
+	margin: 0 20px;
+}
+
+.data-bar {
+	position: relative;
+	height: 40px;
+	top: 50%;
+	transform: translateY(-50%);
+}
