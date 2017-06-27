@@ -1,6 +1,6 @@
 <?php
 
-	require_once 'lib.php';
+	require_once 'partials/lib.php';
 
 	$debuts = [];
 

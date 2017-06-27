@@ -1,6 +1,6 @@
 <?php
 
-	require_once 'lib.php';
+	require_once 'partials/lib.php';
 
 	$race_results = [];
 
@@ -29,7 +29,7 @@
 	}
 
 	// Export to JSON
-	$fp = fopen('results.json', 'w');
+	$fp = fopen('js/results.json', 'w');
 	fwrite($fp, json_encode($race_results, JSON_PRETTY_PRINT));
 	fclose($fp);
 
@@ -46,7 +46,7 @@
   		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 
   		<!-- Custom CSS -->
-		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
 
 	</head>
 
@@ -81,7 +81,7 @@
 	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 
 	  	<!-- Custom JS for driver info page -->
-	  	<script src="driverPage.js"></script>
+	  	<script src="js/driverPage.js"></script>
 
 	</body>
 
