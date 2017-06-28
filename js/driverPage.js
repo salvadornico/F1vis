@@ -4,6 +4,7 @@ $(document).ready( function() {
 	var graph = document.getElementById("graph")
 	var races = []
 
+
 	// Open HTTP connection
 	var xmlhttp = new XMLHttpRequest()
 	xmlhttp.onreadystatechange = function() {
@@ -12,26 +13,19 @@ $(document).ready( function() {
 	        racesObj = JSON.parse(this.responseText)
 
 	        // Process data
-			var count = Object.keys(racesObj).length
-			for (i = 0; i < count; i++) {
-				var race = racesObj[i].race
-				var grid = racesObj[i].grid
-				var posText = racesObj[i].posText
-				var team = racesObj[i].team
-				var posNum = racesObj[i].posNum
+			var barLength = getLowestPos(racesObj)
 
+			for (i = 0; i < Object.keys(racesObj).length; i++) {
 
 				printTableRow(racesObj[i])
-				printGraphRow(racesObj[i], i)
+				printGraphRow(racesObj[i], i, barLength)
 			}
 	    }
 	}
-
 	// Get JSON file
 	xmlhttp.open("GET", "js/results.json", true)
 	xmlhttp.send()
 
-	
 })
 
 function printTableRow(raceObj) {
@@ -42,24 +36,64 @@ function printTableRow(raceObj) {
 			"</td></tr>"	
 }
 
-function printGraphRow(raceObj, i) {
-	graph.innerHTML += "<div class='data-row left' id='row-" + i + "'></div>"
+function printGraphRow(raceObj, index, barLength) {
+	graph.innerHTML += "<div class='data-row left' id='row-" + index + "'></div>"
 
-	var row = document.getElementById("row-" + i)
+	var row = document.getElementById("row-" + index)
 	row.innerHTML = raceObj.race
-	row.innerHTML += "<div class='data-bar' id='rowBar-" + i + "'></div>"
+	row.innerHTML += "<div class='data-star' id='rowStar-" + index + "'></div>"
+	row.innerHTML += "<div class='data-bar' id='rowBar-" + index + "'></div>"
 
-	var rowBar = document.getElementById("rowBar-" + i)
-	rowBar.style.backgroundColor = "green"
-	// set left & right position of rowBar based on getMaxPos
+	var rowStar = document.getElementById("rowStar-" + index)
+	var rowBar = document.getElementById("rowBar-" + index)
+
+	// If pole win, display star & exit
+	if (raceObj.grid == 1 && raceObj.posNum == 1) {
+		console.log("inside pole win")
+		rowStar.style.display = "block"
+		return
+	}
+
+	// Find min & max position values for the race, accounting for DNFs
+	var highPos = getLower(raceObj.grid, raceObj.posNum)
+	var lowPos = getGreater(raceObj.grid, raceObj.posNum)
+	if (lowPos == highPos && raceObj.grid != raceObj.posNum || lowPos == 0) { lowPos = barLength }
+	if (highPos == 0 ) { highPos = barLength }
+	// Accounting for races where grid = final position
+	if (raceObj.grid == raceObj.posNum) {
+		lowPos += 0.5
+		highPos -= 0.5
+	}
+
+	// set left position of rowBar based on lower of grid & finish, as percentage of barLength
+	rowBar.style.left = ((barLength - lowPos) / barLength * 100) + "%"
+	// set length of bar based on delta of grid & pos
+	rowBar.style.width = ((lowPos - highPos) / barLength * 100) + "%"
+	// if finish < grid, set to green. Else, set to red
+	if (raceObj.posNum == 0) { rowBar.style.backgroundColor = "#d32f2f" }
+	else { rowBar.style.backgroundColor = "#388e3c" }
+	
 }
 
-function getMaxPos(raceArr) {
+// Find lowest race position across career to set bar length
+function getLowestPos(raceObj) {
 	var max = 0;
-	for (i = 0; i < raceArr.length; i++) {
-		if (raceArr[i].posNum > max) {
-			max = raceArr[i].posNum
+	for (i = 0; i < Object.keys(raceObj).length; i++) {
+		if (raceObj[i].posNum > max) {
+			max = raceObj[i].posNum
 		}
 	}
 	return max
+}
+
+function getGreater(num1, num2) {
+	if (num1 > num2) { return num1 }
+	else { return num2 }
+}
+
+function getLower(num1, num2) {
+	if (num1 == 0) { return num2 }
+	else if (num2 == 0) { return num1 }
+	else if (num1 < num2) { return num1 }
+	else { return num2 }
 }

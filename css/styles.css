@@ -8,9 +8,8 @@
 	clear: both;
 }
 
-#graph_test {
+#graph {
 	position: relative;
-	border: 1px solid black;
 	padding: 20px;
 }
 
@@ -25,6 +24,18 @@
 .data-bar {
 	position: relative;
 	height: 40px;
-	top: 50%;
-	transform: translateY(-50%);
+	top: -5%;
+}
+
+.data-star {
+	position: absolute;
+	top: 5px;
+	right: 0;
+	width: 50px;
+	height: 50px;
+	background-color: #ffeb3b;
+	z-index: 2;
+	-webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	display: none;
 }
