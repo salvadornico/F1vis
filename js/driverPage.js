@@ -40,16 +40,16 @@ function printGraphRow(raceObj, index, barLength) {
 	graph.innerHTML += "<div class='data-row left' id='row-" + index + "'></div>"
 
 	var row = document.getElementById("row-" + index)
-	row.innerHTML = raceObj.race
+	row.innerHTML = "<span id='rowLabel-" + index + "'>" + raceObj.race + " (" + raceObj.team + ")</span>"
 	row.innerHTML += "<div class='data-star' id='rowStar-" + index + "'></div>"
 	row.innerHTML += "<div class='data-bar' id='rowBar-" + index + "'></div>"
 
+	var rowLabel = document.getElementById("rowLabel-" + index)
 	var rowStar = document.getElementById("rowStar-" + index)
 	var rowBar = document.getElementById("rowBar-" + index)
 
 	// If pole win, display star & exit
 	if (raceObj.grid == 1 && raceObj.posNum == 1) {
-		console.log("inside pole win")
 		rowStar.style.display = "block"
 		return
 	}
@@ -63,14 +63,26 @@ function printGraphRow(raceObj, index, barLength) {
 	if (raceObj.grid == raceObj.posNum) {
 		lowPos += 0.5
 		highPos -= 0.5
+		// For non-qualifying results
+		if (raceObj.grid == 0) {
+			rowLabel.innerHTML += " - Failed to qualify"
+			lowPos = barLength
+			highPos = 0
+		}
+	}
+	// Accounting for DNFs from lowest position
+	if (raceObj.posNum == 0 && raceObj.grid == barLength) {
+		highPos -= 0.5
 	}
 
+	// PRINTING
 	// set left position of rowBar based on lower of grid & finish, as percentage of barLength
 	rowBar.style.left = ((barLength - lowPos) / barLength * 100) + "%"
 	// set length of bar based on delta of grid & pos
 	rowBar.style.width = ((lowPos - highPos) / barLength * 100) + "%"
 	// if finish < grid, set to green. Else, set to red
-	if (raceObj.posNum == 0) { rowBar.style.backgroundColor = "#d32f2f" }
+	if (raceObj.posNum == 0) { rowBar.style.backgroundColor = "#616161" }
+	else if (raceObj. posNum > raceObj.grid) { rowBar.style.backgroundColor = "#d32f2f" }
 	else { rowBar.style.backgroundColor = "#388e3c" }
 	
 }
@@ -81,6 +93,9 @@ function getLowestPos(raceObj) {
 	for (i = 0; i < Object.keys(raceObj).length; i++) {
 		if (raceObj[i].posNum > max) {
 			max = raceObj[i].posNum
+		}
+		if (raceObj[i].grid > max) {
+			max = raceObj[i].grid
 		}
 	}
 	return max

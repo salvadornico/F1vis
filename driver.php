@@ -2,14 +2,24 @@
 
 	require_once 'partials/lib.php';
 
-	$race_results = [];
+	$current_driver_id = $_GET['id'];
 
-	$result = query_sql("SELECT CONCAT(races.year, ' ', races.name) as grand_prix, results.grid, results.positionText, constructors.name , results.position
+	$name_result = query_sql("SELECT driverId AS driverId, CONCAT(forename, ' ', surname) AS 'driver_name' FROM drivers WHERE driverId = $current_driver_id");
+
+	if (mysqli_num_rows($name_result) > 0) {
+		while ($row = mysqli_fetch_assoc($name_result)) {
+			extract($row);
+			$current_driver_name = $driver_name;
+		}
+	}
+
+	$races_result = query_sql("SELECT CONCAT(races.year, ' ', races.name) as grand_prix, results.grid, results.positionText, constructors.name , results.position
 		FROM results join races on races.raceId = results.raceId join constructors on constructors.constructorId = results.constructorId 
-		WHERE results.driverId = 102 ORDER BY races.year, races.round");
+		WHERE results.driverId = $current_driver_id ORDER BY races.year, races.round");
 
-	if (mysqli_num_rows($result) > 0) {
-		while ($row = mysqli_fetch_assoc($result)) {
+	$race_results = [];
+	if (mysqli_num_rows($races_result) > 0) {
+		while ($row = mysqli_fetch_assoc($races_result)) {
 			extract($row);
 
 			// convert null values to zero
@@ -54,7 +64,7 @@
 
 		<h1>Ergast Formula 1 database test</h1>
 
-		<h2>Finishing Positions of Ayrton Senna</h2>
+		<h2>Finishing Positions of <?php echo $current_driver_name; ?></h2>
 
 		<div id="graph" class="responsive-table clear">
 			

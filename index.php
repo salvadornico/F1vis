@@ -4,7 +4,7 @@
 
 	$debuts = [];
 
-	$result = query_sql("SELECT CONCAT(drivers.forename, ' ', drivers.surname) AS 'driver_name', 
+	$result = query_sql("SELECT drivers.driverId AS driverId, CONCAT(drivers.forename, ' ', drivers.surname) AS 'driver_name', 
 		min(races.date) AS 'debut'
 		FROM driverstandings JOIN drivers ON drivers.driverId = driverstandings.driverId
 		JOIN races ON races.raceId = driverstandings.raceId
@@ -18,7 +18,7 @@
 			$date_arr = explode('-', $debut);
 			$debut = $date_arr[0];
 
-			$new_driver = [utf8_encode($driver_name) => $debut];
+			$new_driver = [$debut => [$driverId, utf8_encode($driver_name)]];
 			$debuts[] = $new_driver;
 		}
 	}
@@ -26,7 +26,7 @@
 	// merge drivers with same year debut in array
 	$collated_debuts = [];
 	foreach ($debuts as $debut) {
-		foreach ($debut as $driver => $year) {
+		foreach ($debut as $year => $driver) {
 			// if year is in array
 			if (searchForYear($year, $collated_debuts)) {
 				// append driver to correct year
@@ -37,7 +37,6 @@
 			}
 		}
 	}
-
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +64,7 @@
 							<td>$year</td>
 							<td>";
 							foreach ($drivers as $driver) {
-								echo "$driver<br>";
+								echo "<a href='driver.php?id=$driver[0]'>$driver[1]</a>";
 							}
 					echo "</td></tr>";
 				}
