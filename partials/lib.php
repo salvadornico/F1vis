@@ -8,10 +8,28 @@
 	$conn = mysqli_connect($host, $sql_username, $sql_password, $database);
 
 	// Set up query
-	function query_sql($query) {
+	function querySQL($query) {
 		global $conn;
 		$result = mysqli_query($conn, $query);
 		return $result;
+	}
+
+	$nav_links = [
+		['Home', 'index.php'],
+		['Register / Login', 'login.php'],
+		['Dashboard', '#'],
+		['Drivers Database', 'drivers.php']
+	];
+
+	function printNav($classes = null) {
+		global $nav_links;
+		foreach ($nav_links as $link) {
+			echo "<li><a href='$link[1]'";
+			if ($classes != null) {
+				echo " class='$classes'";
+			}
+			echo ">$link[0]</a></li>";
+		}
 	}
 
 	function searchForYear($id, $array) {
@@ -23,7 +41,7 @@
    		return false;
 	}
 
-	function translate_finish($positionText) {
+	function translateFinish($positionText) {
 		switch ($positionText) {
 			case 'R':
 				return 'Retired';
