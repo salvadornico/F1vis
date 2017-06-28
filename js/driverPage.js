@@ -25,6 +25,18 @@ $(document).ready( function() {
 	// Get JSON file
 	xmlhttp.open("GET", "js/results.json", true)
 	xmlhttp.send()
+    
+    // Driver FAB ScrollFire
+    var driverFab = document.getElementById("driver-fab")
+    driverFab.addEventListener("click", scrollToTop)
+    
+    var scrollFireOptions = [
+        {selector: '#driver-title', offset: 1000, callback: function(el) {
+            driverFab.style.display = "block"
+        }}
+    ]
+    
+    Materialize.scrollFire(scrollFireOptions)  
 
 })
 
@@ -111,4 +123,10 @@ function getLower(num1, num2) {
 	else if (num2 == 0) { return num1 }
 	else if (num1 < num2) { return num1 }
 	else { return num2 }
+}
+
+// For driver FAB
+function scrollToTop() {
+	document.body.scrollTop = 0 // For Chrome, Safari and Opera 
+    document.documentElement.scrollTop = 0 // For IE and Firefox
 }

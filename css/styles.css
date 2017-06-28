@@ -13,10 +13,22 @@ main {
     padding-bottom: 20px;
 }
 
+.container {
+	margin: 20px auto;
+}
+
 .clear:after {
 	content: "";
 	display: block;
 	clear: both;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Raleway', sans-serif;
 }
 
 .brand-logo img {
@@ -36,8 +48,18 @@ main {
 	height: 400px;
 }
 
-.container {
-	margin: 20px auto;
+.parallax-container div {
+    width: 100%;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.parallax-container div h1 {
+    display: block;
+    letter-spacing: -10px;
+    font-size: 100px;
+    margin: 0;
+    padding-top: 100px;
 }
 
 

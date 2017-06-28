@@ -17,8 +17,9 @@
 
 		<title><?php echo "$active_page - Working Title"; ?></title>
 
-		<!--Import Google Icon Font-->
+		<!--Import Google Fonts-->
       	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
 
       	<!-- Font Awesome -->
       	<script src="https://use.fontawesome.com/8a3d0f859b.js"></script>
@@ -35,11 +36,11 @@
 
 	<body>
 
-		<div class="navbar-fixed">			
+		<div<?php ifHomeNav(); ?>>			
 			<nav>
 			    <div class="nav-wrapper green darken-3">
 			    	<a href="index.php" class="brand-logo center">
-			    		<img src="images/Monoposto.png" alt="Monoposto logo">
+			    		<img src="images/<?php ifHomeLogo(); ?>" alt="Monoposto logo">
 			    	</a>
 	      			<a href="#" data-activates="side-menu" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
 				    <ul class="side-nav" id="side-menu">

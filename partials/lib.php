@@ -67,4 +67,16 @@
 		}
 	}
 
+    function ifHomeLogo() {
+        global $active_page;
+        if ($active_page == "Home") { echo "monoposto-helmet-yellow.png"; }
+        else { echo "monoposto-logo-transparent.png"; }
+    }
+
+    function ifHomeNav() {
+        global $active_page;
+        if ($active_page == "Home") { echo ""; }
+        else { echo " class='navbar-fixed'"; }
+    }
+
 ?>

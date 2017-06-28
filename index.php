@@ -10,6 +10,10 @@
 		
 		<div class="parallax-container">
       		<div class="parallax"><img src="images/main-header.jpg" alt="60's Lotus Formula 1 car"></div>
+            <div>
+                <h1 class="center-align white-text">monoposto</h1>
+                <h5 class="center-align white-text">Formula 1 Data Visualization</h5>
+            </div>
     	</div>
 
 		<div class="section container">
