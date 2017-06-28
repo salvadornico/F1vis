@@ -20,6 +20,9 @@
 		<!--Import Google Icon Font-->
       	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+      	<!-- Font Awesome -->
+      	<script src="https://use.fontawesome.com/8a3d0f859b.js"></script>
+
 		<!-- Materialize CSS -->
   		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 

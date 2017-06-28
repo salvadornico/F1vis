@@ -45,7 +45,7 @@
 
 			<a class='waves-effect waves-light btn yellow darken-3 back-btn' href="drivers.php">Back</a>
 
-			<h3>Finishing Positions of <?php echo $current_driver_name; ?></h3>
+			<h3 id="driver-title">Finishing Positions of <?php echo $current_driver_name; ?></h3>
 
 			<div id="graph" class="responsive-table clear">
 				
@@ -64,6 +64,12 @@
 				<!-- Content populated by JS -->
 
 			</table>
+
+			<div class="fixed-action-btn">
+    			<button class="btn-floating btn-large red" id="driver-fab">
+      				<i class="fa fa-chevron-up" aria-hidden="true"></i>
+    			</button> 
+  			</div>
 
 		</div> <!-- /container -->
 
