@@ -40,7 +40,7 @@
 						echo "Registration failed. Please try again.";
 					}
 
-					// TODO: display discovery tooltips
+					// TODO: echo script tags with jQuery instructions to open discovery tooltip
 				}
 
 				// Login processing
@@ -54,6 +54,7 @@
 						while ($row = mysqli_fetch_assoc($result)) {
 							extract($row);
 							$_SESSION['user'] = $name;
+							$_SESSION['username'] = $username;
 							$_SESSION['role'] = $role;			
 							$_SESSION['avatar'] = $avatar;			
 						}

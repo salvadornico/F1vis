@@ -26,22 +26,14 @@ $(document).ready( function() {
 	xmlhttp.open("GET", "js/results.json", true)
 	xmlhttp.send()
     
-    // Driver FAB ScrollFire
-    var driverFab = document.getElementById("driver-fab")
-    driverFab.addEventListener("click", scrollToTop)
-    
-    var scrollFireOptions = [
-        {selector: '#driver-title', offset: 1000, callback: function(el) {
-            driverFab.style.display = "block"
-        }},
-        {selector: '#footer', offset: 0, callback: function(el) {
-            driverFab.style.position = "absolute"            
-            driverFab.style.bottom = "0"            
-            driverFab.style.right = "-130px"
-        }}
-    ]
-    
-    Materialize.scrollFire(scrollFireOptions)  
+    // Driver FAB fixed scrolling
+    $('#driver-fab').click( function() { scrollToTop() })
+
+  	$('#driver-fab').pushpin({
+      	top: 400,
+      	// bottom: ($(document).height() - $('footer').height()),
+      	offset: ($(window).height() * 0.75)
+    })
 
 })
 

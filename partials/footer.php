@@ -25,20 +25,14 @@
 	        </div>
         </footer>
 
-		<!-- jQuery -->
-	    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!-- Sitewide custom JS -->
+	  	<script src="js/scripts.js" defer></script>
 
-		<!-- Materialize JS -->
-	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-
-	  	<!-- Sitewide custom JS -->
-	  	<script src="js/scripts.js"></script>
-
-	  	<!-- Custom JS for driver info page -->
+	  	<!-- Custom JS for driver info or home page -->
 	  	<?php
 
-	  		if ($is_driver_page) { echo '<script src="js/driverPage.js"></script>'; }
-	  		else if ($active_page = "Home") { echo '<script src="js/homePage.js"></script>'; }
+	  		if ($is_driver_page) { echo '<script src="js/driverPage.js" defer></script>'; }
+	  		if ($active_page == "Home") { echo '<script src="js/homePage.js" defer></script>'; }
 
 	  	?>
 

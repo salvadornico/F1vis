@@ -28,7 +28,6 @@ $(document).ready( function() {
 	        		articleCount++       
 	        	}
 	        }
-
 	    } else {
 	    	newsbox.innerHTML = "Problem loading news. Please reload to try again."
 	    }

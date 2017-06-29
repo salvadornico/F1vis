@@ -36,7 +36,7 @@
 	$fp = fopen('js/results.json', 'w');
 	fwrite($fp, json_encode($race_results, JSON_PRETTY_PRINT));
 	fclose($fp);
-	// TODO: create separate files/directories per user to avoid conflicts
+	// TODO: create separate files/directories per user to avoid conflicts?
 
 ?>
 
@@ -47,6 +47,10 @@
 			<a class='waves-effect waves-light btn yellow darken-3 back-btn' href="drivers.php">Back</a>
 
 			<h3 id="driver-title">Finishing Positions of <?php echo $current_driver_name; ?></h3>
+
+			<button class="btn-floating btn-large green tooltipped" data-position="left" data-delay="50" data-tooltip="Back to top" id="driver-fab">
+  				<i class="fa fa-chevron-up" aria-hidden="true"></i>
+			</button>
 
 			<div id="graph" class="responsive-table clear">
 				
@@ -65,11 +69,6 @@
 				<!-- Content populated by JS -->
 
 			</table>
-
-
-			<button class="btn-floating btn-large green tooltipped" data-position="left" data-delay="50" data-tooltip="Back to top" id="driver-fab">
-  				<i class="fa fa-chevron-up" aria-hidden="true"></i>
-			</button>
 
 		</div> <!-- /container -->
 

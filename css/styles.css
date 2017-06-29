@@ -66,6 +66,15 @@ h5 {
     padding-top: 100px;
 }
 
+@media (max-width: 600px) {
+
+	#home-parallax div h1 {
+		font-size: 65px;
+		letter-spacing: -8px;		
+	}
+
+}
+
 #dashboard-parallax {
 	height: 300px;
 }
@@ -105,7 +114,6 @@ footer .material-icons {
 	position: relative;
 	width: 80%;
 	border-bottom: 1px solid #e0e0e0;
-	height: 60px;
 	margin: 0 20px;
 }
 
@@ -128,12 +136,30 @@ footer .material-icons {
 }
 
 #driver-fab {
-	display: none;
+	/*display: none;*/
 	position: fixed;
-	bottom: 40px;
+	/*bottom: 40px;*/
 	right: 40px;
 }
 
 #driver-fab i {
 	line-height: 50px;
+}
+
+/*Class for when element is above threshold*/
+.pin-top {
+    position: relative;
+    right: 50px;
+}
+
+ /*Class for when element is below threshold*/
+.pin-bottom {
+    position: relative;
+    right: 50px;
+}
+
+ /*Class for when element is pinned*/
+.pinned {
+    position: fixed !important;
+    right: 50px;
 }
