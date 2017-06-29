@@ -29,7 +29,7 @@ $(document).ready( function() {
 	        	}
 	        }
 	    } else {
-	    	newsbox.innerHTML = "Problem loading news. Please reload to try again."
+	    	newsbox.innerHTML = "Problem loading news. Please reload to try again if nothing happens after 30 seconds."
 	    }
 	}
 
@@ -72,7 +72,7 @@ $(document).ready( function() {
     			standingsTable.innerHTML += "<tr><td>" + position + "</td><td>" + driverName + "</td><td>" + points + "</td><td>" + constructor + "</td></tr>"
     		}
 	    } else {
-	    	standingsMessage.innerHTML = "Problem loading standings. Please reload to try again."
+	    	standingsMessage.innerHTML = "Problem loading standings. Please reload to try again if nothing happens after 30 seconds."
 	    }
 	}
 
