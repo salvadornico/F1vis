@@ -11,7 +11,7 @@
 	                	</p>
 	              	</div>
 	              	<div class="col l4 offset-l2 s12">
-		                <h5 class="white-text">Sections</h5>
+		                <h5 class="white-text">sections</h5>
 		                <ul>
 		                	<?php printNav("grey-text text-lighten-3"); ?>
 		                </ul>

@@ -88,7 +88,7 @@
 	// user avatar in side nav
 	function displayAvatar() {
 		if(isset($_SESSION['user'])) { echo "avatars/avatar-" . $_SESSION['avatar'] . ".png"; }
-		else { echo "The-Stig.jpg"; }		
+		else { echo "avatars/avatar-default.png"; }		
 	}
 
 ?>
