@@ -54,7 +54,7 @@
 
 			<div id="graph" class="responsive-table clear">
 				
-				<!-- Content populated by JS -->
+				<!-- Content populated by printGraphRow() in driverPage.js -->
 
 			</div>
 
@@ -66,7 +66,7 @@
 					<th>Constructor</th>
 				</tr>
 
-				<!-- Content populated by JS -->
+				<!-- Content populated by printTable() in driverPage.js -->
 
 			</table>
 

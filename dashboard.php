@@ -70,6 +70,37 @@
 
 			?>
 
+			<h3>Latest News</h3>
+			<div class="row" id="newsbox">
+
+				<!-- News populated by dashboard.js -->
+
+			</div> <!-- /newsbox -->
+			<span>
+				News stories courtesy of <a href="https://www.theguardian.com">The Guardian</a>
+			</span>
+
+			<h3>Current Standings</h3>
+			<span>
+				As of Round <span id="roundLabel"></span>, <span id="seasonLabel"></span> season
+			</span>
+			<div class="row" id="standingsbox">
+
+				<table id="standingsTable" class="highlight">
+					<tr>
+						<th>Pos</th>
+						<th>Driver</th>
+						<th>Points</th>
+						<th>Constructor</th>
+					</tr>
+					
+					<!-- Data populated by dashboard.js -->
+
+				</table>
+
+				<span id="standingsMessage"></span>
+
+			</div> <!-- /standingsbox -->
 
 		</div> <!-- /container -->
 		

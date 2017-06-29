@@ -32,7 +32,7 @@
 	  	<?php
 
 	  		if ($is_driver_page) { echo '<script src="js/driverPage.js" defer></script>'; }
-	  		if ($active_page == "Home") { echo '<script src="js/homePage.js" defer></script>'; }
+	  		if ($active_page == "Dashboard") { echo '<script src="js/dashboard.js" defer></script>'; }
 
 	  	?>
 

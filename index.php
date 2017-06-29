@@ -21,16 +21,7 @@
 			<h1>Home :)</h1>
 			<!-- Hello API? https://www.fourtonfish.com/hellosalut/hello/ -->
 
-			<h3>Latest News</h3>
-			<div class="row" id="newsbox">
-				
-				<!-- Guardian API query: http://content.guardianapis.com/search?order-by=newest&q=f1&api-key=4ba1d878-9a90-4e98-8554-de2a8a5300e7 -->
-
-			</div> <!-- /newsbox -->
-			<span>
-				News stories courtesy of <a href="https://www.theguardian.com">The Guardian</a>
-			</span>
-
+			
 		</div> <!-- /container -->
 		
 	</main>
