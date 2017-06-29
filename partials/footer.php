@@ -1,5 +1,5 @@
 
-		<footer class="page-footer green darken-4">
+		<footer class="page-footer green darken-4" id="footer">
 	    	<div class="container">
 	        	<div class="row">
 	            	<div class="col l6 s12">
@@ -38,6 +38,7 @@
 	  	<?php
 
 	  		if ($is_driver_page) { echo '<script src="js/driverPage.js"></script>'; }
+	  		else if ($active_page = "Home") { echo '<script src="js/homePage.js"></script>'; }
 
 	  	?>
 

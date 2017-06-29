@@ -15,7 +15,7 @@
 
 	<head>
 
-		<title><?php echo "$active_page - Working Title"; ?></title>
+		<title><?php echo "$active_page - monoposto"; ?></title>
 
 		<!--Import Google Fonts-->
       	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -39,22 +39,55 @@
 		<div<?php ifHomeNav(); ?>>			
 			<nav>
 			    <div class="nav-wrapper green darken-3">
+
 			    	<a href="index.php" class="brand-logo center">
 			    		<img src="images/<?php ifHomeLogo(); ?>" alt="Monoposto logo">
 			    	</a>
-	      			<a href="#" data-activates="side-menu" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+
+	      			<a href="#" data-activates="side-menu" class="button-collapse show-on-large">
+	      				<i class="material-icons">menu</i>
+	      			</a>
+
+	      			<!-- Put back links, for discoverability? -->
+
 				    <ul class="side-nav" id="side-menu">
 				    	<li>
 				    		<div class="user-view">
+
 	      						<div class="background">
 	        						<img src="images/side-header.jpg" alt="2011 Formula 1 grid">
 	      						</div>
-	      						<img class="circle" src="images/The-Stig.jpg" alt="User Avatar">
-	      						<span class="white-text name">Welcome!</span>
-	    					</div>
+
+	      						<img class="circle" src="images/<?php displayAvatar(); ?>" alt="User Avatar">
+
+	      						<span class="white-text name">
+	      							<?php
+
+	      								// user greeting
+						    			if(isset($_SESSION['user'])) { echo $_SESSION['user']; }
+						    			else { echo "Welcome!"; }
+
+	      							?>
+	      						</span>
+
+	    					</div> <!-- /user-view card -->
 	    				</li>
-				        <?php printNav(); ?>
+
+				        <?php 
+
+				        	printNav(); 
+
+							// logout button
+			    			if(isset($_SESSION['user'])) { 
+			    				echo "<li><a href='logout.php'><i class='material-icons'>perm_identity</i>Logout</a></li>"; 
+			    			} else { 
+			    				echo "<li><a href='login.php'><i class='material-icons'>perm_identity</i>Login / Register</a></li>"; 
+			    			}				        	
+
+				        ?>
+
 				    </ul>
-			    </div>
+
+			    </div> <!-- /nav-wrapper -->
 			</nav>
 		</div>

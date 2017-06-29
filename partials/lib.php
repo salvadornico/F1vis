@@ -14,11 +14,12 @@
 		return $result;
 	}
 
+
+	// Navigation links across the site
 	$nav_links = [
-		['Home', 'index.php'],
-		['Register / Login', 'login.php'],
-		['Dashboard', '#'],
-		['Drivers Database', 'drivers.php']
+		['Home', 'index.php', '<i class="fa fa-home" aria-hidden="true"></i>'],
+		['Dashboard', 'dashboard.php', '<i class="material-icons">dashboard</i>'],
+		['Drivers Database', 'drivers.php', '<i class="material-icons">assignment_ind</i>']
 	];
 
 	function printNav($classes = null) {
@@ -28,10 +29,26 @@
 			if ($classes != null) {
 				echo " class='$classes'";
 			}
-			echo ">$link[0]</a></li>";
+			echo ">$link[2] $link[0]</a></li>";
 		}
 	}
 
+
+	// Changes styling for homepage
+    function ifHomeLogo() {
+        global $active_page;
+        if ($active_page == "Home") { echo "monoposto-helmet-yellow.png"; }
+        else { echo "monoposto-logo-transparent.png"; }
+    }
+
+    function ifHomeNav() {
+        global $active_page;
+        if ($active_page == "Home") { echo ""; }
+        else { echo " class='navbar-fixed'"; }
+    }
+
+
+    // For reorganizing driver list array
 	function searchForYear($id, $array) {
    		foreach ($array as $key => $val) {
        		if ($key == $id) {
@@ -67,16 +84,11 @@
 		}
 	}
 
-    function ifHomeLogo() {
-        global $active_page;
-        if ($active_page == "Home") { echo "monoposto-helmet-yellow.png"; }
-        else { echo "monoposto-logo-transparent.png"; }
-    }
 
-    function ifHomeNav() {
-        global $active_page;
-        if ($active_page == "Home") { echo ""; }
-        else { echo " class='navbar-fixed'"; }
-    }
+	// user avatar in side nav
+	function displayAvatar() {
+		if(isset($_SESSION['user'])) { echo "avatars/avatar-" . $_SESSION['avatar'] . ".png"; }
+		else { echo "The-Stig.jpg"; }		
+	}
 
 ?>

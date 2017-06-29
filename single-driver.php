@@ -36,6 +36,7 @@
 	$fp = fopen('js/results.json', 'w');
 	fwrite($fp, json_encode($race_results, JSON_PRETTY_PRINT));
 	fclose($fp);
+	// TODO: create separate files/directories per user to avoid conflicts
 
 ?>
 
@@ -65,11 +66,10 @@
 
 			</table>
 
-			<div class="fixed-action-btn">
-    			<button class="btn-floating btn-large red" id="driver-fab">
-      				<i class="fa fa-chevron-up" aria-hidden="true"></i>
-    			</button> 
-  			</div>
+
+			<button class="btn-floating btn-large green tooltipped" data-position="left" data-delay="50" data-tooltip="Back to top" id="driver-fab">
+  				<i class="fa fa-chevron-up" aria-hidden="true"></i>
+			</button>
 
 		</div> <!-- /container -->
 

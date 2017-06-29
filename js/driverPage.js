@@ -33,6 +33,11 @@ $(document).ready( function() {
     var scrollFireOptions = [
         {selector: '#driver-title', offset: 1000, callback: function(el) {
             driverFab.style.display = "block"
+        }},
+        {selector: '#footer', offset: 0, callback: function(el) {
+            driverFab.style.position = "absolute"            
+            driverFab.style.bottom = "0"            
+            driverFab.style.right = "-130px"
         }}
     ]
     
