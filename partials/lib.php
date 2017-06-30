@@ -2,9 +2,9 @@
 
 	// Open SQL connection
 	$host = 'localhost';
-	$sql_username = 'root';
-	$sql_password = '';
-	$database = 'f1db';
+	$sql_username = 'salvado8_nico';
+	$sql_password = 'password';
+	$database = 'salvado8_f1db';
 	$conn = mysqli_connect($host, $sql_username, $sql_password, $database);
 
 	// Set up query when a response is expected
