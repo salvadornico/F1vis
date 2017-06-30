@@ -7,7 +7,7 @@
 	$database = 'f1db';
 	$conn = mysqli_connect($host, $sql_username, $sql_password, $database);
 
-	// Set up query
+	// Set up query when a response is expected
 	function querySQL($query) {
 		global $conn;
 		$result = mysqli_query($conn, $query);
@@ -46,6 +46,24 @@
         if ($active_page == "Home") { echo ""; }
         else { echo " class='navbar-fixed'"; }
     }
+
+
+    $avatars = ['red', 'blue', 'green', 'orange', 'purple', 'pink'];
+
+	function printAvatars($avatar_array) {
+		global $active_page;
+		for ($i = 0; $i < sizeof($avatar_array); $i++) { 
+			echo "<div class='avatar-select col s6 m4 l2'>
+						<input class='with-gap' name='avatar' value='$avatar_array[$i]' type='radio' id='avatar".($i + 1)."' ";
+						if ($active_page == "Dashboard") {
+							if ($avatar_array[$i] == $_SESSION['avatar']) { echo "checked"; }
+						}
+				echo " required /><label for='avatar".($i + 1)."'>
+							<img src='images/avatars/avatar-$avatar_array[$i].png' class='avatar responsive-img' alt='".ucfirst($avatar_array[$i])." user avatar'>
+						</label>
+					</div>";
+		}    								
+	}
 
 
     // For reorganizing driver list array

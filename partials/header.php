@@ -32,12 +32,6 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-		<!-- jQuery -->
-	    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
-		<!-- Materialize JS -->
-	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-
 	</head>
 
 	<body>
@@ -85,7 +79,11 @@
 
 							// logout button
 			    			if(isset($_SESSION['user'])) { 
-			    				echo "<li><a href='logout.php'><i class='material-icons'>perm_identity</i>Logout</a></li>"; 
+			    				echo "<li><a href='logout.php'><i class='material-icons'>perm_identity</i>Logout</a></li>";
+			    				if ($_SESSION['role'] == 'admin') {
+			    					// Admin section
+				    				echo "<li><a href='admin.php'><i class='material-icons'>settings</i>Admin Section</a></li>";
+			    				 } 
 			    			} else { 
 			    				echo "<li><a href='login.php'><i class='material-icons'>perm_identity</i>Login / Register</a></li>"; 
 			    			}				        	

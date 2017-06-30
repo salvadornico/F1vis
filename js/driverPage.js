@@ -1,9 +1,10 @@
 $(document).ready( function() {
+
 	// Setup
 	var resultsTable = document.getElementById("resultsTable")
 	var graph = document.getElementById("graph")
+	var tableLoadingBar = document.getElementById("tableLoadingBar")
 	var races = []
-
 
 	// Open HTTP connection
 	var xmlhttp = new XMLHttpRequest()
@@ -11,6 +12,10 @@ $(document).ready( function() {
 	    if (this.readyState == 4 && this.status == 200) {
 	        // Parse JSON to Object
 	        racesObj = JSON.parse(this.responseText)
+
+			// Hide loading bars
+			tableLoadingBar.style.display = "none"
+			graph.innerHTML = ""
 
 	        // Process data
 			var barLength = getLowestPos(racesObj)
@@ -20,6 +25,7 @@ $(document).ready( function() {
 				printTableRow(racesObj[i])
 				printGraphRow(racesObj[i], i, barLength)
 			}
+
 	    }
 	}
 	// Get JSON file
@@ -33,7 +39,7 @@ $(document).ready( function() {
       	top: 400,
       	// bottom: ($(document).height() - $('footer').height()),
       	offset: ($(window).height() * 0.75)
-    })
+    })		
 
 })
 
@@ -87,9 +93,9 @@ function printGraphRow(raceObj, index, barLength) {
 	// PRINTING
 	// set left position of rowBar based on lower of grid & finish, as percentage of barLength
 	rowBar.style.left = ((barLength - lowPos) / barLength * 100) + "%"
-	// set length of bar based on delta of grid & pos
+	// set length of bar based on delta of grid & finish
 	rowBar.style.width = ((lowPos - highPos) / barLength * 100) + "%"
-	// if finish < grid, set to green. Else, set to red
+	// if finish is higher than grid, set to green. If finish lower, set to red. For DNFs, grey.
 	if (raceObj.posNum == 0) { rowBar.style.backgroundColor = "#616161" }
 	else if (raceObj. posNum > raceObj.grid) { rowBar.style.backgroundColor = "#d32f2f" }
 	else { rowBar.style.backgroundColor = "#388e3c" }

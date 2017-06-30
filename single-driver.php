@@ -8,10 +8,12 @@
 	$is_driver_page = true;
 
 	$races_result = querySQL("SELECT CONCAT(races.year, ' ', races.name) as grand_prix, results.grid, results.positionText, constructors.name , results.position
-		FROM results join races on races.raceId = results.raceId join constructors on constructors.constructorId = results.constructorId 
-		WHERE results.driverId = $current_driver_id ORDER BY races.year, races.round");
+		FROM results join races on races.raceId = results.raceId 
+		join constructors on constructors.constructorId = results.constructorId 
+		join drivers on results.driverId = drivers.driverId
+		WHERE drivers.driverRef = '$current_driver_id' ORDER BY races.year, races.round");
 
-	$race_results = [];
+	$results = [];
 	if (mysqli_num_rows($races_result) > 0) {
 		while ($row = mysqli_fetch_assoc($races_result)) {
 			extract($row);
@@ -28,13 +30,13 @@
 				'team' => $name, 
 				'posNum' => intval($position)
 				];
-			$race_results[] = $new_result;
+			$results[] = $new_result;
 		}
 	}
 
 	// Export to JSON
 	$fp = fopen('js/results.json', 'w');
-	fwrite($fp, json_encode($race_results, JSON_PRETTY_PRINT));
+	fwrite($fp, json_encode($results, JSON_PRETTY_PRINT));
 	fclose($fp);
 	// TODO: create separate files/directories per user to avoid conflicts?
 
@@ -44,7 +46,7 @@
 		
 		<div class="container">
 
-			<a class='waves-effect waves-light btn yellow darken-3 back-btn' href="drivers.php">Back</a>
+			<a class='waves-effect waves-light btn yellow darken-3 back-btn' href="drivers.php">Back to Drivers</a>
 
 			<h3 id="driver-title">Finishing Positions of <?php echo $current_driver_name; ?></h3>
 
@@ -53,6 +55,10 @@
 			</button>
 
 			<div id="graph" class="responsive-table clear">
+
+				<div class='progress' id="graphLoadingBar">
+					<div class='indeterminate'></div>
+				</div>
 				
 				<!-- Content populated by printGraphRow() in driverPage.js -->
 
@@ -65,6 +71,10 @@
 					<th>Finish</th>
 					<th>Constructor</th>
 				</tr>
+
+				<div class='progress' id="tableLoadingBar">
+					<div class='indeterminate'></div>
+				</div>
 
 				<!-- Content populated by printTable() in driverPage.js -->
 

@@ -18,9 +18,12 @@
 
 			<?php
 
+				// Default state for JS variable to handle errors when no user is signed in
+				echo "<script> var isUserLoggedIn = false </script>";
+
+				// Register new user
 				if (isset($_POST['register_user'])) {
 
-					// Register new user
 					$name = $_POST['name'];
 					$username = $_POST['username'];
 					$password = $_POST['password'];
@@ -65,49 +68,193 @@
 					}
 				}
 
+				if (isset($_SESSION['user'])) {
+					// Set JS value to allow feed scripts to run
+					echo "<script> var isUserLoggedIn = true </script>";
+
+					// changing avatar
+					if (isset($_POST['change_avatar'])) {
+						$new_avatar = $_POST['avatar'];
+						$username = $_SESSION['username'];
+
+						$sql = "UPDATE users SET avatar = '$new_avatar' WHERE username = '$username'";
+
+						mysqli_query($conn, $sql);
+						$_SESSION['avatar'] = $new_avatar;
+
+						echo '<META HTTP-EQUIV=REFRESH CONTENT="0; dashboard.php">';
+					}
+
+					// changing password
+					if (isset($_POST['change_password'])) {
+						$current_username = $_SESSION['username'];
+						$old_password = $_POST['old_password'];
+
+						// Check if old password is correct
+						$result = querySQL("SELECT * FROM users WHERE username = '$current_username'
+							and password = '$old_password'");
+						if (mysqli_num_rows($result) > 0) {
+							while ($row = mysqli_fetch_assoc($result)) {
+								extract($row);
+								// if match
+								if ($password == sha1($old_password)) {
+									$new_password = $_POST['new_password'];
+									$confirm_password = $_POST['confirm_password'];
+									
+									if ($new_password == $confirm_password) {
+										$new_password = sha1($new_password);
+
+										$sql = "UPDATE users SET password = '$new_password' WHERE username = '$current_username'";
+
+										mysqli_query($conn, $sql);
+
+										echo "Password change successful!";
+									}									
+								}											
+							}
+							echo '<META HTTP-EQUIV=REFRESH CONTENT="0; dashboard.php">';
+						} else {
+							echo "Wrong password. Please try again.";
+						}
+					}
+				}
+
 				// TODO: favorite drivers
-				// TODO: account settings
 
 			?>
 
-			<h3>Latest News</h3>
-			<div class="row" id="newsbox">
+			<div id="contentbox" class="row">
+				
+				<div class="col s12">
+      				<ul class="tabs tabs-fixed-width">
+        				<li class="tab"><a href="#news" class="black-text">News</a></li>
+        				<li class="tab"><a href="#settings" class="black-text">Account Settings</a></li>
+      				</ul>
+    			</div>
 
-				<!-- News populated by dashboard.js -->
+    			<div id="news" class="col s12">
 
-			</div> <!-- /newsbox -->
-			<span>
-				News stories courtesy of <a href="https://www.theguardian.com">The Guardian</a>
-			</span>
+					<h3>Current Standings</h3>
 
-			<h3>Current Standings</h3>
-			<span>
-				As of Round <span id="roundLabel"></span>, <span id="seasonLabel"></span> season
-			</span>
-			<div class="row" id="standingsbox">
+					<div class='progress' id="loadingBar">
+						<div class='indeterminate'></div>
+					</div>
 
-				<table id="standingsTable" class="highlight">
-					<tr>
-						<th>Pos</th>
-						<th>Driver</th>
-						<th>Points</th>
-						<th>Constructor</th>
-					</tr>
+					<span>
+						As of Round <span id="roundLabel"></span>, <span id="seasonLabel"></span> season
+					</span>
 					
-					<!-- Data populated by dashboard.js -->
+					<div class="row" id="standingsbox">
 
-				</table>
 
-				<span id="standingsMessage"></span>
+						<table id="standingsTable" class="highlight">
+							<tr>
+								<th>Pos</th>
+								<th>Driver</th>
+								<th>Points</th>
+								<th>Constructor</th>
+							</tr>
 
-			</div> <!-- /standingsbox -->
+							
+							<!-- Data populated by dashboard.js -->
+
+						</table>
+
+						<span id="standingsMessage"></span>
+
+					</div> <!-- /standingsbox -->
+
+    			</div> <!-- /news tab -->
+
+    			<div id="settings" class="col s12">
+
+    				<h3>Account Settings</h3>
+
+    				<ul class="collapsible" data-collapsible="accordion">
+
+	    				<!-- Change avatar -->
+    					<li>
+      						<div class="collapsible-header">Change avatar</div>
+      						<div class="collapsible-body">
+			    				<div class="row">
+			    					<form method="POST" class="col s12">
+
+			    						<!-- Avatar select -->
+			    						<div class="row">
+				    						<h5>Change your avatar</h5>
+			    						</div>
+
+						      			<div class="row">
+			    							<?php printAvatars($avatars); ?>
+						      			</div> <!-- /avatar row -->
+
+						      			<div class="row">
+						      				<div class="col s2">
+						      					<button class="waves-effect waves-light btn blue darken-4" name="change_avatar" value="change">
+													Save
+												</button>
+						      				</div>
+						      			</div>
+
+			    					</form>
+			    				</div> <!-- /form row -->
+      						</div> <!-- /collapsible body -->
+    					</li> <!-- /change avatar -->
+
+	    				<!-- Change password -->
+    					<li>
+      						<div class="collapsible-header">Change password</div>
+      						<div class="collapsible-body">
+			    				<div class="row">
+			    					<form method="POST" class="col s12">
+
+			    						<!-- Avatar select -->
+			    						<div class="row">
+				    						<h5>Change your password</h5>
+			    						</div>
+
+			    						<div class="row">
+			    							<div class="input-field col s12 m6">
+						          				<input id="old_password" name="old_password" type="password" class="validate" required>
+						          				<label for="old_password">Current password</label>
+						        			</div>
+			    						</div>
+						      			<div class="row">
+						        			<div class="input-field col s12 m6">
+						          				<input id="new_password" name="new_password" type="password" class="validate" required>
+						          				<label for="new_password">New password</label>
+						        			</div>
+						        			<div class="input-field col s12 m6">
+						          				<input id="confirm_password" name="confirm_password" type="password" class="validate" required>
+						          				<label for="confirm_password">Confirm new password</label>
+						        			</div>
+						      			</div>
+
+						      			<div class="row">
+						      				<div class="col s2">
+						      					<button class="waves-effect waves-light btn blue darken-4" name="change_password" value="change">
+													Save
+												</button>
+						      				</div>
+						      			</div>
+
+			    					</form>
+			    				</div> <!-- /form row -->
+      						</div> <!-- /collapsible body -->
+    					</li> <!-- /change password -->
+    					
+  					</ul>
+
+
+
+    			</div> <!-- /settings tab -->
+
+
+
+			</div> <!-- /contentbox -->
 
 		</div> <!-- /container -->
 		
 	</main>
 
-<?php
-
-	require_once 'partials/footer.php';
-
-?>
+<?php require_once 'partials/footer.php'; ?>

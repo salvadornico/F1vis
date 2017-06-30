@@ -6,7 +6,7 @@
 
 	$debuts = [];
 
-	$result = querySQL("SELECT drivers.driverId AS driverId, CONCAT(drivers.forename, ' ', drivers.surname) AS 'driver_name', 
+	$result = querySQL("SELECT drivers.driverRef AS driverId, CONCAT(drivers.forename, ' ', drivers.surname) AS 'driver_name', 
 		min(races.date) AS 'debut'
 		FROM driverstandings JOIN drivers ON drivers.driverId = driverstandings.driverId
 		JOIN races ON races.raceId = driverstandings.raceId
