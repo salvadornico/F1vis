@@ -88,7 +88,7 @@
 					// changing password
 					if (isset($_POST['change_password'])) {
 						$current_username = $_SESSION['username'];
-						$old_password = $_POST['old_password'];
+						$old_password = sha1($_POST['old_password']);
 
 						// Check if old password is correct
 						$result = querySQL("SELECT * FROM users WHERE username = '$current_username'
@@ -96,8 +96,9 @@
 						if (mysqli_num_rows($result) > 0) {
 							while ($row = mysqli_fetch_assoc($result)) {
 								extract($row);
+
 								// if match
-								if ($password == sha1($old_password)) {
+								if ($password == $old_password) {
 									$new_password = $_POST['new_password'];
 									$confirm_password = $_POST['confirm_password'];
 									
@@ -109,10 +110,11 @@
 										mysqli_query($conn, $sql);
 
 										echo "Password change successful!";
-									}									
+									} else {
+										echo "New passwords didn't match. Please try again.";
+									}								
 								}											
 							}
-							echo '<META HTTP-EQUIV=REFRESH CONTENT="0; dashboard.php">';
 						} else {
 							echo "Wrong password. Please try again.";
 						}

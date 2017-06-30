@@ -16,13 +16,30 @@
             </div>
     	</div>
 
-		<div class="section container">
+		<div class="section container" id="intro">
 			
 			<div class="row">
 				
-				<h1>Home :)</h1>
+				<ul id="cyclelist">
+					<li>Welcome</li>
+					<li>Benvenuto</li>
+					<li>ようこそ</li>
+					<li>Willkommen</li>
+					<li>Bienvenue</li>
+					<li>स्वागत हे</li>
+					<li>Velkommen</li>
+					<li>Bienvenidos</li>
+					<li>أهلا بك</li>
+					<li>Välkommen</li>
+					<li>добро пожаловать</li>
+					<li>Tervetuloa</li>
+					<li>Welkom</li>
+					<li>Bem vinda</li>
+					<li>欢迎</li>
+				</ul>
 
-				<p>
+
+				<p class="flow-text">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -32,6 +49,14 @@
 				</p>
 
 			</div>
+
+		</div> <!-- /container -->
+
+		<div class="parallax-container">
+      		<div class="parallax"><img src="images/home-header-2.jpg" alt="Jarno Trulli, 2011 Lotus Formula 1 car"></div>
+    	</div>
+
+		<div class="section container">
 
 			<div class="row">
 				
@@ -50,10 +75,12 @@
 				</span>
 
 			</div>
-
-
 			
 		</div> <!-- /container -->
+
+		<div class="parallax-container">
+      		<div class="parallax"><img src="images/home-header-3.jpg" alt="Nigel Mansell, 1982 Lotus Formula 1 car"></div>
+    	</div>
 		
 	</main>
 
