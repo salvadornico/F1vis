@@ -42,8 +42,6 @@
 					} else {
 						echo "Registration failed. Please try again.";
 					}
-
-					// TODO: echo script tags with jQuery instructions to open discovery tooltip
 				}
 
 				// Login processing
@@ -121,24 +119,63 @@
 					}
 				}
 
-				// TODO: favorite drivers
-
 			?>
 
 			<div id="contentbox" class="row">
 				
 				<div class="col s12">
       				<ul class="tabs tabs-fixed-width">
+        				<li class="tab"><a href="#drivers" class="black-text">Favorite Drivers</a></li>
         				<li class="tab"><a href="#news" class="black-text">News</a></li>
         				<li class="tab"><a href="#settings" class="black-text">Account Settings</a></li>
       				</ul>
     			</div>
 
+    			<div id="drivers" class="col s12">
+
+					<h3>Favorite Drivers</h3>
+
+					<div class="row">
+
+						<!-- Retrieving favorite drivers -->
+						<?php
+
+							$username = $_SESSION['username'];
+
+							$drivers_result = querySQL("SELECT DISTINCT drivers.driverRef, CONCAT(drivers.forename, ' ', drivers.surname) AS 'driverName' FROM drivers JOIN favoritedrivers ON drivers.driverId = favoritedrivers.driverId JOIN users ON users.userId = favoritedrivers.userId WHERE users.username = '$username'");
+							if (mysqli_num_rows($drivers_result) > 0) {
+								echo "<table class='bordered highlight'>";
+								while ($row = mysqli_fetch_assoc($drivers_result)) {
+									extract($row);
+
+									$driverName = utf8_encode($driverName);
+									
+									echo "<tr><td>
+											<a href='single-driver.php?id=$driverRef&name=$driverName'>
+												$driverName
+											</a></td></tr>";			
+								}
+								echo "</table>";
+							} else {
+								echo "No drivers added. Go to <a href='drivers.php'>the database</a> and add some!";
+							}
+
+						?>
+						
+					</div>
+
+					<div class="row">
+						<a href="drivers.php" class="waves-effect waves-light btn yellow darken-3">Add</a>
+					</div>
+
+
+    			</div> <!-- /drivers tab -->
+
     			<div id="news" class="col s12">
 
 					<h3>Current Standings</h3>
 
-					<div class='progress' id="loadingBar">
+					<div class='progress' id="standingsLoadingBar">
 						<div class='indeterminate'></div>
 					</div>
 

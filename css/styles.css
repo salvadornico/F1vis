@@ -148,30 +148,9 @@ footer .material-icons {
 }
 
 #driver-fab {
-	/*display: none;*/
-	position: fixed;
-	/*bottom: 40px;*/
 	right: 40px;
 }
 
-#driver-fab i {
+#driver-fab > button > i {
 	line-height: 50px;
-}
-
-/*Class for when element is above threshold*/
-.pin-top {
-    position: relative;
-    right: 50px;
-}
-
- /*Class for when element is below threshold*/
-.pin-bottom {
-    position: relative;
-    right: 50px;
-}
-
- /*Class for when element is pinned*/
-.pinned {
-    position: fixed !important;
-    right: 50px;
 }

@@ -28,7 +28,7 @@
         <!-- Sitewide custom JS -->
 	  	<script src="js/scripts.js"></script>
 
-	  	<!-- Custom JS for driver info page or dashboard -->
+	  	<!-- Custom JS for specific pages -->
 	  	<?php
 
 	  		if ($is_driver_page) { echo '<script src="js/singleDriverPage.js"></script>'; }

@@ -32,15 +32,8 @@ $(document).ready( function() {
 	filePath = "js/users/results-" + currentUser + ".json"
 	xmlhttp.open("GET", filePath, true)
 	xmlhttp.send()
-    
-    // Driver FAB fixed scrolling
-    $('#driver-fab').click( function() { scrollToTop() })
 
-  	$('#driver-fab').pushpin({
-      	top: 400,
-      	// bottom: ($(document).height() - $('footer').height()),
-      	offset: ($(window).height() * 0.75)
-    })		
+	$('#backBtnFab').click( function() { scrollToTop() })		
 
 })
 

@@ -15,13 +15,16 @@
 				$current_driver_id = $driverId;
 				$current_driver_name = $driverName;
 			}
+		} else {
+			header("Location: driver404.php");
+			exit();
 		}
 	} else if (isset($_GET['id'])) { // from direct link
 		$current_driver_id = $_GET['id'];
 		$current_driver_name = $_GET['name'];
 	}
 
-	$active_page = "$current_driver_name - Drivers";
+	$active_page = "$current_driver_name | Drivers";
 
 	require_once 'partials/header.php';
 	$is_driver_page = true;
@@ -66,13 +69,24 @@
 		
 		<div class="container">
 
-			<a class='waves-effect waves-light btn yellow darken-3 back-btn' href="drivers.php">Back to Drivers</a>
-
 			<h3 id="driver-title">Finishing Positions of <?php echo $current_driver_name; ?></h3>
 
-			<button class="btn-floating btn-large green tooltipped" data-position="left" data-delay="50" data-tooltip="Back to top" id="driver-fab">
-  				<i class="fa fa-chevron-up" aria-hidden="true"></i>
-			</button>
+			<div class="fixed-action-btn toolbar" id="driver-fab">
+				<a class="btn-floating btn-large yellow darken-3 tooltipped" data-position="left" data-delay="50" data-tooltip="More options">
+	  				<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+				</a>
+				<ul>
+      				<li class="waves-effect waves-light"><a href="add-driver.php?id=<?php echo $current_driver_id; ?>" id="scrollUpBtn" data-position="top" data-delay="50" data-tooltip="Add to favorites">
+      					<i class="fa fa-plus" aria-hidden="true"></i><span>&nbsp;&nbsp;Add to favorites</span>
+      				</a></li>
+      				<li class="waves-effect waves-light"><a id="backBtnFab">
+      					<i class="fa fa-chevron-up" aria-hidden="true"></i><span>&nbsp;&nbsp;Back to top</span>
+      				</a></li>
+      				<li class="waves-effect waves-light"><a href="drivers.php">
+      					<i class="fa fa-address-card" aria-hidden="true"></i><span>&nbsp;&nbsp;Back to Drivers List</span>
+      				</a></li>
+      			</ul>				
+			</div>
 
 			<div id="graph" class="responsive-table clear">
 

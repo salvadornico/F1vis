@@ -9,7 +9,7 @@ $(document).ready( function() {
 		var standingsTable = document.getElementById("standingsTable")
 		var roundLabel = document.getElementById("roundLabel")
 		var seasonLabel = document.getElementById("seasonLabel")
-		var loadingBar = document.getElementById("loadingBar")
+		var loadingBar = document.getElementById("standingsLoadingBar")
 
 		var standingsXmlhttp = new XMLHttpRequest()
 		standingsXmlhttp.onreadystatechange = function() {
