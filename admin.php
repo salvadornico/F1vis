@@ -47,7 +47,7 @@
 
 						<?php 
 
-							// Get number of regular users
+							// Tally favorite drivers
 							$regular_result = querySQL("SELECT CONCAT(drivers.forename, ' ', drivers.surname) AS 'driverName',
 							 COUNT(favoritedrivers.userId) as 'userCount' 
 							 FROM drivers JOIN favoritedrivers ON favoritedrivers.driverId = drivers.driverId 

@@ -57,9 +57,11 @@
 	}
 
 	// Export to separate JSON files per user
-	$fp = fopen('js/users/results-'.$_SESSION['username'].'.json', 'w');
+	if (isset($_SESSION['username'])) { $user = $_SESSION['username']; }
+	else { $user = "default"; }
+	$fp = fopen('js/users/results-'.$user.'.json', 'w');
 	// Pass username to JS
-	echo "<script> var currentUser = '".$_SESSION['username']."' </script>";
+	echo "<script> var currentUser = '$user' </script>";
 	fwrite($fp, json_encode($results, JSON_PRETTY_PRINT));
 	fclose($fp);
 
@@ -76,15 +78,30 @@
 	  				<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 				</a>
 				<ul>
-      				<li class="waves-effect waves-light"><a href="add-driver.php?id=<?php echo $current_driver_id; ?>" id="scrollUpBtn" data-position="top" data-delay="50" data-tooltip="Add to favorites">
-      					<i class="fa fa-plus" aria-hidden="true"></i><span>&nbsp;&nbsp;Add to favorites</span>
-      				</a></li>
-      				<li class="waves-effect waves-light"><a id="backBtnFab">
-      					<i class="fa fa-chevron-up" aria-hidden="true"></i><span>&nbsp;&nbsp;Back to top</span>
-      				</a></li>
-      				<li class="waves-effect waves-light"><a href="drivers.php">
-      					<i class="fa fa-address-card" aria-hidden="true"></i><span>&nbsp;&nbsp;Back to Drivers List</span>
-      				</a></li>
+					<?php
+
+	      				if (isset($_SESSION['username'])) {
+		      				echo "<li class='waves-effect waves-light'>
+		      						<a href='add-driver.php?id=$current_driver_id' id='scrollUpBtn'>
+		      							<i class='fa fa-plus' aria-hidden='true'></i>
+		      							<span>&nbsp;&nbsp;Add to favorites</span>
+		      						</a
+		      					</li>";
+	      				}
+
+					?>
+      				<li class="waves-effect waves-light">
+      					<a id="backBtnFab">
+      						<i class="fa fa-chevron-up" aria-hidden="true"></i>
+      						<span>&nbsp;&nbsp;Back to top</span>
+      					</a>
+  					</li>
+      				<li class="waves-effect waves-light">
+      					<a href="drivers.php">
+      						<i class="fa fa-address-card" aria-hidden="true"></i>
+      						<span>&nbsp;&nbsp;Back to Drivers List</span>
+      					</a>
+  					</li>
       			</ul>				
 			</div>
 

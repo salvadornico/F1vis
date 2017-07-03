@@ -1,128 +1,16 @@
 [
     {
-        "race": "1994 Japanese Grand Prix",
-        "grid": 26,
+        "race": "1980 Belgian Grand Prix",
+        "grid": 23,
         "posText": "Retired",
-        "team": "Simtek",
+        "team": "Ensign",
         "posNum": 0
     },
     {
-        "race": "1995 Brazilian Grand Prix",
-        "grid": 21,
-        "posText": "Retired",
-        "team": "Footwork",
-        "posNum": 0
-    },
-    {
-        "race": "1995 Argentine Grand Prix",
-        "grid": 26,
-        "posText": "Retired",
-        "team": "Footwork",
-        "posNum": 0
-    },
-    {
-        "race": "1995 San Marino Grand Prix",
-        "grid": 19,
-        "posText": "Retired",
-        "team": "Footwork",
-        "posNum": 0
-    },
-    {
-        "race": "1995 Spanish Grand Prix",
-        "grid": 18,
-        "posText": "Retired",
-        "team": "Footwork",
-        "posNum": 0
-    },
-    {
-        "race": "1995 Monaco Grand Prix",
-        "grid": 26,
-        "posText": "Retired",
-        "team": "Footwork",
-        "posNum": 0
-    },
-    {
-        "race": "1995 Canadian Grand Prix",
-        "grid": 22,
-        "posText": "9",
-        "team": "Footwork",
-        "posNum": 9
-    },
-    {
-        "race": "1995 French Grand Prix",
-        "grid": 18,
-        "posText": "Retired",
-        "team": "Footwork",
-        "posNum": 0
-    },
-    {
-        "race": "1995 British Grand Prix",
-        "grid": 19,
-        "posText": "Retired",
-        "team": "Footwork",
-        "posNum": 0
-    },
-    {
-        "race": "1995 German Grand Prix",
-        "grid": 19,
-        "posText": "Retired",
-        "team": "Footwork",
-        "posNum": 0
-    },
-    {
-        "race": "1995 Hungarian Grand Prix",
-        "grid": 18,
-        "posText": "Retired",
-        "team": "Footwork",
-        "posNum": 0
-    },
-    {
-        "race": "1995 Belgian Grand Prix",
-        "grid": 18,
-        "posText": "12",
-        "team": "Footwork",
-        "posNum": 12
-    },
-    {
-        "race": "1995 Italian Grand Prix",
-        "grid": 20,
-        "posText": "8",
-        "team": "Footwork",
-        "posNum": 8
-    },
-    {
-        "race": "1995 Portuguese Grand Prix",
-        "grid": 19,
-        "posText": "15",
-        "team": "Footwork",
-        "posNum": 15
-    },
-    {
-        "race": "1995 European Grand Prix",
-        "grid": 21,
-        "posText": "Retired",
-        "team": "Footwork",
-        "posNum": 0
-    },
-    {
-        "race": "1995 Pacific Grand Prix",
-        "grid": 20,
-        "posText": "Retired",
-        "team": "Footwork",
-        "posNum": 0
-    },
-    {
-        "race": "1995 Japanese Grand Prix",
-        "grid": 18,
-        "posText": "12",
-        "team": "Footwork",
-        "posNum": 12
-    },
-    {
-        "race": "1995 Australian Grand Prix",
-        "grid": 19,
-        "posText": "Retired",
-        "team": "Footwork",
+        "race": "1980 Monaco Grand Prix",
+        "grid": 0,
+        "posText": "Failed to qualify",
+        "team": "Ensign",
         "posNum": 0
     }
 ]
