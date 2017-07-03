@@ -1,7 +1,26 @@
 <?php
 
-	$current_driver_id = $_GET['id'];
-	$current_driver_name = $_GET['name'];
+	
+	if (isset($_POST['submit_driver_search'])) { // search from form
+		$search_term = $_POST['driver-search'];
+
+		$conn = mysqli_connect('localhost', 'salvado8_nico', 'password', 'salvado8_f1db');
+		mysqli_set_charset($conn, "UTF8");
+		$driver_query = "SELECT driverRef AS driverId, CONCAT(forename, ' ', surname) AS 'driverName' 
+			FROM drivers WHERE CONCAT(forename, ' ', surname) LIKE '$search_term'";
+		$driver_result = mysqli_query($conn, $driver_query);
+		if (mysqli_num_rows($driver_result) > 0) {
+			while ($row = mysqli_fetch_assoc($driver_result)) {
+				extract($row);
+				$current_driver_id = $driverId;
+				$current_driver_name = $driverName;
+			}
+		}
+	} else if (isset($_GET['id'])) { // from direct link
+		$current_driver_id = $_GET['id'];
+		$current_driver_name = $_GET['name'];
+	}
+
 	$active_page = "$current_driver_name - Drivers";
 
 	require_once 'partials/header.php';

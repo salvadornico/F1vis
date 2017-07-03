@@ -25,20 +25,13 @@
 	        </div>
         </footer>
 
-
-		<!-- jQuery -->
-	    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
-		<!-- Materialize JS -->
-	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-
         <!-- Sitewide custom JS -->
 	  	<script src="js/scripts.js"></script>
 
 	  	<!-- Custom JS for driver info page or dashboard -->
 	  	<?php
 
-	  		if ($is_driver_page) { echo '<script src="js/driverPage.js"></script>'; }
+	  		if ($is_driver_page) { echo '<script src="js/singleDriverPage.js"></script>'; }
 	  		switch ($active_page) {
 	  			case 'Dashboard':
 	  				echo '<script src="js/dashboard.js"></script>';
