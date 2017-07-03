@@ -1,0 +1,93 @@
+[
+    {
+        "race": "1993 South African Grand Prix",
+        "grid": 9,
+        "posText": "Retired",
+        "team": "McLaren",
+        "posNum": 0
+    },
+    {
+        "race": "1993 Brazilian Grand Prix",
+        "grid": 5,
+        "posText": "Retired",
+        "team": "McLaren",
+        "posNum": 0
+    },
+    {
+        "race": "1993 European Grand Prix",
+        "grid": 6,
+        "posText": "Retired",
+        "team": "McLaren",
+        "posNum": 0
+    },
+    {
+        "race": "1993 San Marino Grand Prix",
+        "grid": 6,
+        "posText": "Retired",
+        "team": "McLaren",
+        "posNum": 0
+    },
+    {
+        "race": "1993 Spanish Grand Prix",
+        "grid": 7,
+        "posText": "5",
+        "team": "McLaren",
+        "posNum": 5
+    },
+    {
+        "race": "1993 Monaco Grand Prix",
+        "grid": 9,
+        "posText": "8",
+        "team": "McLaren",
+        "posNum": 8
+    },
+    {
+        "race": "1993 Canadian Grand Prix",
+        "grid": 12,
+        "posText": "14",
+        "team": "McLaren",
+        "posNum": 14
+    },
+    {
+        "race": "1993 French Grand Prix",
+        "grid": 16,
+        "posText": "6",
+        "team": "McLaren",
+        "posNum": 6
+    },
+    {
+        "race": "1993 British Grand Prix",
+        "grid": 11,
+        "posText": "Retired",
+        "team": "McLaren",
+        "posNum": 0
+    },
+    {
+        "race": "1993 German Grand Prix",
+        "grid": 12,
+        "posText": "Retired",
+        "team": "McLaren",
+        "posNum": 0
+    },
+    {
+        "race": "1993 Hungarian Grand Prix",
+        "grid": 11,
+        "posText": "Retired",
+        "team": "McLaren",
+        "posNum": 0
+    },
+    {
+        "race": "1993 Belgian Grand Prix",
+        "grid": 14,
+        "posText": "8",
+        "team": "McLaren",
+        "posNum": 8
+    },
+    {
+        "race": "1993 Italian Grand Prix",
+        "grid": 9,
+        "posText": "3",
+        "team": "McLaren",
+        "posNum": 3
+    }
+]

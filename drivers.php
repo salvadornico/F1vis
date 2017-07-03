@@ -16,7 +16,7 @@
 		while ($row = mysqli_fetch_assoc($result)) {
 			extract($row);
 
-			// extract year from debut
+			// extract year from debut date
 			$date_arr = explode('-', $debut);
 			$debut = $date_arr[0];
 
@@ -34,7 +34,7 @@
 				// append driver to correct year
 				array_push($collated_debuts[$year], $driver);
 			} else {
-				// create new year entry for array with driver
+				// create new year entry with driver included
 				$collated_debuts[$year] = [$driver];			
 			}
 		}

@@ -15,7 +15,7 @@
 
 	<head>
 
-		<title><?php echo "$active_page - monoposto"; ?></title>
+		<title><?php echo "$active_page | monoposto"; ?></title>
 
 		<!--Import Google Fonts-->
       	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -48,8 +48,6 @@
 	      				<i class="material-icons">menu</i>
 	      			</a>
 
-	      			<!-- Put back links, for discoverability? -->
-
 				    <ul class="side-nav" id="side-menu">
 				    	<li>
 				    		<div class="user-view">
@@ -77,8 +75,8 @@
 
 				        	printNav(); 
 
-							// logout button
 			    			if(isset($_SESSION['user'])) { 
+								// logout button
 			    				echo "<li><a href='logout.php'><i class='material-icons'>perm_identity</i>Logout</a></li>";
 			    				if ($_SESSION['role'] == 'admin') {
 			    					// Admin section

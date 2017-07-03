@@ -29,7 +29,8 @@ $(document).ready( function() {
 	    }
 	}
 	// Get JSON file
-	xmlhttp.open("GET", "js/results.json", true)
+	filePath = "js/users/results-" + currentUser + ".json"
+	xmlhttp.open("GET", filePath, true)
 	xmlhttp.send()
     
     // Driver FAB fixed scrolling

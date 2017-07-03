@@ -34,11 +34,12 @@
 		}
 	}
 
-	// Export to JSON
-	$fp = fopen('js/results.json', 'w');
+	// Export to separate JSON files per user
+	$fp = fopen('js/users/results-'.$_SESSION['username'].'.json', 'w');
+	// Pass username to JS
+	echo "<script> var currentUser = '".$_SESSION['username']."' </script>";
 	fwrite($fp, json_encode($results, JSON_PRETTY_PRINT));
 	fclose($fp);
-	// TODO: create separate files/directories per user to avoid conflicts?
 
 ?>
 
