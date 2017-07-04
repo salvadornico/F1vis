@@ -86,7 +86,7 @@
 			      				</div>
 			      			</div>
 			      			<div class="row">			      				
-			      				<?php printAvatars($avatars); ?>
+			      				<?php printAvatars(); ?>
 			      			</div> <!-- /avatar row -->
 
 			      			<div class="row">

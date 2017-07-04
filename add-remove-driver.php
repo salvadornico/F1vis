@@ -20,13 +20,12 @@
 
 	if ($_GET['action'] == 'add') {
 		// save favorite to database
-		$sql = "INSERT INTO favoritedrivers (userId, driverId) 
-			VALUES ('$current_user', '$current_driver_id')";
+		$sql = "INSERT INTO favoritedrivers (userId, driverId) VALUES ('$current_user', '$current_driver_id')";
 	} else if ($_GET['action'] == 'del') {
 		// remove favorite from database
 		$sql = "DELETE FROM favoritedrivers WHERE userId = '$current_user' AND driverId = '$current_driver_id'";
 	}
-	
+
 	mysqli_query($conn, $sql);
 
 	header('location:dashboard.php');

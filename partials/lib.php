@@ -26,9 +26,7 @@
 		global $nav_links;
 		foreach ($nav_links as $link) {
 			echo "<li><a href='$link[1]'";
-			if ($classes != null) {
-				echo " class='$classes'";
-			}
+			if ($classes != null) { echo " class='$classes'"; }
 			echo ">$link[2] $link[0]</a></li>";
 		}
 	}
@@ -50,16 +48,17 @@
 
     $avatars = ['red', 'blue', 'green', 'orange', 'purple', 'pink'];
 
-	function printAvatars($avatar_array) {
+	function printAvatars() {
 		global $active_page;
-		for ($i = 0; $i < sizeof($avatar_array); $i++) { 
+		global $avatars;
+		for ($i = 0; $i < sizeof($avatars); $i++) { 
 			echo "<div class='avatar-select col s6 m4 l2'>
-						<input class='with-gap' name='avatar' value='$avatar_array[$i]' type='radio' id='avatar".($i + 1)."' ";
+						<input class='with-gap' name='avatar' value='$avatars[$i]' type='radio' id='avatar".($i + 1)."' ";
 						if ($active_page == "Dashboard") {
-							if ($avatar_array[$i] == $_SESSION['avatar']) { echo "checked"; }
+							if ($avatars[$i] == $_SESSION['avatar']) { echo "checked"; }
 						}
 				echo " required /><label for='avatar".($i + 1)."'>
-							<img src='images/avatars/avatar-$avatar_array[$i].png' class='avatar responsive-img' alt='".ucfirst($avatar_array[$i])." user avatar'>
+							<img src='images/avatars/avatar-$avatars[$i].png' class='avatar responsive-img' alt='".ucfirst($avatars[$i])." user avatar'>
 						</label>
 					</div>";
 		}    								
@@ -70,7 +69,7 @@
 	function searchForYear($id, $array) {
    		foreach ($array as $key => $val) {
        		if ($key == $id) { return true; }
-   		}
+   		} 
    		return false;
 	}
 

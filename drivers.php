@@ -5,7 +5,6 @@
 	require_once 'partials/header.php';
 
 	$debuts = [];
-	$drivers = [];
 
 	$result = querySQL("SELECT drivers.driverRef AS driverId, CONCAT(drivers.forename, ' ', drivers.surname) AS 'driverName', 
 		min(races.date) AS 'debut'
