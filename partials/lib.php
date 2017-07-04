@@ -69,9 +69,7 @@
     // For reorganizing driver list array
 	function searchForYear($id, $array) {
    		foreach ($array as $key => $val) {
-       		if ($key == $id) {
-           		return true;
-       		}
+       		if ($key == $id) { return true; }
    		}
    		return false;
 	}

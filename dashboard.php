@@ -137,36 +137,50 @@
 
 					<div class="row">
 
-						<!-- Retrieving favorite drivers -->
-						<?php
+						<div class="col s12 m6">
+							
+							<!-- Retrieving favorite drivers -->
+							<?php
 
-							$username = $_SESSION['username'];
+								$username = $_SESSION['username'];
 
-							$drivers_result = querySQL("SELECT DISTINCT drivers.driverRef, CONCAT(drivers.forename, ' ', drivers.surname) AS 'driverName' FROM drivers JOIN favoritedrivers ON drivers.driverId = favoritedrivers.driverId JOIN users ON users.userId = favoritedrivers.userId WHERE users.username = '$username'");
-							if (mysqli_num_rows($drivers_result) > 0) {
-								echo "<table class='bordered highlight'>";
-								while ($row = mysqli_fetch_assoc($drivers_result)) {
-									extract($row);
+								$drivers_result = querySQL("SELECT DISTINCT drivers.driverRef, CONCAT(drivers.forename, ' ', drivers.surname) AS 'driverName' FROM drivers JOIN favoritedrivers ON drivers.driverId = favoritedrivers.driverId JOIN users ON users.userId = favoritedrivers.userId WHERE users.username = '$username'");
+								if (mysqli_num_rows($drivers_result) > 0) {
+									echo "<table class='bordered highlight'>";
+									while ($row = mysqli_fetch_assoc($drivers_result)) {
+										extract($row);
 
-									$driverName = utf8_encode($driverName);
-									
-									echo "<tr><td>
-											<a href='single-driver.php?id=$driverRef&name=$driverName'>
-												$driverName
-											</a></td></tr>";			
+										$driverName = utf8_encode($driverName);
+										
+										echo "<tr>
+												<td>
+													<a href='single-driver.php?id=$driverRef&name=$driverName'>
+														$driverName
+													</a>
+												</td>
+												<td>
+													<a href='add-remove-driver.php?id=$driverRef&action=del' class='btn-flat red-text waves-red right-align'>
+														Remove
+													</a>
+											</tr>";			
+									}
+									echo "</table>";
+								} else {
+									echo "No drivers added. Go to <a href='drivers.php'>the database</a> and add some!";
 								}
-								echo "</table>";
-							} else {
-								echo "No drivers added. Go to <a href='drivers.php'>the database</a> and add some!";
-							}
 
-						?>
+							?>
+
+						</div>
 						
+						<div class="col s12 m4 center-align">
+							<a href="drivers.php" class="waves-effect waves-light btn-large yellow darken-3">
+								Add
+							</a>
+						</div>
+
 					</div>
 
-					<div class="row">
-						<a href="drivers.php" class="waves-effect waves-light btn yellow darken-3">Add</a>
-					</div>
 
 
     			</div> <!-- /drivers tab -->

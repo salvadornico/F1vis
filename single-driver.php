@@ -82,7 +82,7 @@
 
 	      				if (isset($_SESSION['username'])) {
 		      				echo "<li class='waves-effect waves-light'>
-		      						<a href='add-driver.php?id=$current_driver_id' id='scrollUpBtn'>
+		      						<a href='add-remove-driver.php?id=$current_driver_id&action=add' id='scrollUpBtn'>
 		      							<i class='fa fa-plus' aria-hidden='true'></i>
 		      							<span>&nbsp;&nbsp;Add to favorites</span>
 		      						</a
