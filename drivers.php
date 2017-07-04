@@ -21,7 +21,7 @@
 			$debut = $date_arr[0];
 
 			// array for displaying list
-			$new_driver = [$debut => [$driverId, htmlentities($driverName)]];
+			$new_driver = [$debut => [$driverId, $driverName]]; // use utf8_encode($driverName) for x10 hosted version
 			$debuts[] = $new_driver;
 		}
 	}
@@ -79,7 +79,7 @@
 									<td>$year</td>
 									<td>";
 									foreach ($drivers as $driver) {
-										echo "<a class='driver-btn waves-effect waves-light btn yellow darken-3' href='single-driver.php?id=$driver[0]&name=$driver[1]'>$driver[1]</a>";
+										echo "<a class='driver-btn waves-effect waves-light btn yellow darken-3' href='single-driver.php?id=$driver[0]&name=$driver[1]'>".$driver[1]."</a>";
 									}
 							echo "</td></tr>";
 						}

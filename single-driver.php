@@ -1,6 +1,5 @@
 <?php
 
-	
 	if (isset($_POST['submit_driver_search'])) { // search from form
 		$search_term = $_POST['driver-search'];
 
