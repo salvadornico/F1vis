@@ -4,6 +4,7 @@ $(document).ready( function() {
 	var resultsTable = document.getElementById("resultsTable")
 	var graph = document.getElementById("graph")
 	var tableLoadingBar = document.getElementById("tableLoadingBar")
+	var legend = document.getElementById("legend")
 	var races = []
 
 	// Open HTTP connection
@@ -33,7 +34,15 @@ $(document).ready( function() {
 	xmlhttp.open("GET", filePath, true)
 	xmlhttp.send()
 
-	$('#backBtnFab').click( function() { scrollToTop() })		
+
+	$('#backBtnFab').click( function() { scrollToTop() })
+
+	setTimeout(function(){
+		legend.style.display = "none"
+		Materialize.toast('Click More Options to reopen legend', 3000)
+	}, 5000)
+
+	$('#legendBtn').click( function() { toggleLegend() })	
 
 })
 
@@ -127,4 +136,9 @@ function getLower(num1, num2) {
 function scrollToTop() {
 	document.body.scrollTop = 0 // For Chrome, Safari and Opera 
     document.documentElement.scrollTop = 0 // For IE and Firefox
+}
+
+function toggleLegend() {
+	if (legend.style.display == "none") { legend.style.display = "block" }
+	else { legend.style.display = "none" }
 }

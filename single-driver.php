@@ -102,6 +102,12 @@
       						<span>&nbsp;&nbsp;Back to Drivers List</span>
       					</a>
   					</li>
+  					<li class="waves-effect waves-light">
+      					<a id="legendBtn">
+      						<i class="fa fa-info-circle" aria-hidden="true"></i>
+      						<span>&nbsp;&nbsp;Toggle legend</span>
+      					</a>
+  					</li>
       			</ul>				
 			</div>
 
@@ -132,6 +138,10 @@
 			</table>
 
 		</div> <!-- /container -->
+
+		<div id="legend">
+			<img src="images/legend.png" alt="Legend for race position graph">
+		</div>
 
 	</main>
 

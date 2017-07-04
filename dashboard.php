@@ -125,9 +125,9 @@
 				
 				<div class="col s12">
       				<ul class="tabs tabs-fixed-width">
-        				<li class="tab"><a href="#drivers" class="black-text">Favorite Drivers</a></li>
+        				<li class="tab"><a href="#drivers" class="black-text">Drivers</a></li>
         				<li class="tab"><a href="#news" class="black-text">News</a></li>
-        				<li class="tab"><a href="#settings" class="black-text">Account Settings</a></li>
+        				<li class="tab"><a href="#settings" class="black-text">Account</a></li>
       				</ul>
     			</div>
 
