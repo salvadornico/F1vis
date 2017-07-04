@@ -126,7 +126,7 @@
 				<div class="col s12">
       				<ul class="tabs tabs-fixed-width">
         				<li class="tab"><a href="#drivers" class="black-text">Drivers</a></li>
-        				<li class="tab"><a href="#news" class="black-text">News</a></li>
+        				<li class="tab"><a href="#updates" class="black-text">Updates</a></li>
         				<li class="tab"><a href="#settings" class="black-text">Account</a></li>
       				</ul>
     			</div>
@@ -190,9 +190,9 @@
 
     			</div> <!-- /drivers tab -->
 
-    			<div id="news" class="col s12">
+    			<div id="updates" class="col s12">
 
-					<h3>Current Standings</h3>
+					<h3>Drivers' Championship Standings</h3>
 
 					<div class='progress' id="standingsLoadingBar">
 						<div class='indeterminate'></div>
@@ -222,7 +222,7 @@
 
 					</div> <!-- /standingsbox -->
 
-    			</div> <!-- /news tab -->
+    			</div> <!-- /updates tab -->
 
     			<div id="settings" class="col s12">
 
