@@ -6,6 +6,7 @@
 	$sql_password = 'password';
 	$database = 'salvado8_f1db';
 	$conn = mysqli_connect($host, $sql_username, $sql_password, $database);
+	mysqli_set_charset($conn, "UTF8");
 
 	// Set up query when a response is expected
 	function querySQL($query) {

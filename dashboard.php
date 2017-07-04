@@ -150,7 +150,7 @@
 									while ($row = mysqli_fetch_assoc($drivers_result)) {
 										extract($row);
 
-										$driverName = utf8_encode($driverName);
+										$driverName = htmlentities($driverName);
 										
 										echo "<tr>
 												<td>

@@ -21,7 +21,7 @@
 			$debut = $date_arr[0];
 
 			// array for displaying list
-			$new_driver = [$debut => [$driverId, utf8_encode($driverName)]];
+			$new_driver = [$debut => [$driverId, htmlentities($driverName)]];
 			$debuts[] = $new_driver;
 		}
 	}

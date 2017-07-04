@@ -13,7 +13,7 @@
 			while ($row = mysqli_fetch_assoc($driver_result)) {
 				extract($row);
 				$current_driver_id = $driverId;
-				$current_driver_name = $driverName;
+				$current_driver_name = htmlentities($driverName);
 			}
 		} else {
 			header("Location: driver404.php");

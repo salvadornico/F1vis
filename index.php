@@ -21,21 +21,15 @@
 			<div class="row">
 				
 				<ul id="cyclelist">
-					<li>Welcome</li>
-					<li>Benvenuto</li>
-					<li>ようこそ</li>
-					<li>Willkommen</li>
-					<li>Bienvenue</li>
-					<li>स्वागत हे</li>
-					<li>Velkommen</li>
-					<li>Bienvenidos</li>
-					<li>أهلا بك</li>
-					<li>Välkommen</li>
-					<li>добро пожаловать</li>
-					<li>Tervetuloa</li>
-					<li>Welkom</li>
-					<li>Bem vinda</li>
-					<li>欢迎</li>
+					<?php
+
+						$greetings = ['Welcome', 'Benvenuto', 'ようこそ', 'Willkommen', 'Bienvenue', 'स्वागत हे', 'Velkommen', 'Bienvenidos', 'أهلا بك', 'Välkommen', 'добро пожаловать', 'Tervetuloa', 'Welkom', 'Bem vinda', '欢迎'];
+
+						foreach ($greetings as $greeting) {
+							echo "<li>".htmlentities($greeting)."</li>";
+						}
+
+					?>
 				</ul>
 
 

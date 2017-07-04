@@ -16,6 +16,7 @@
 	<head>
 
 		<title><?php echo "$active_page | monoposto"; ?></title>
+		<link rel="icon" type="image/png" href="images/icon.png" />
 
 		<!--Import Google Fonts-->
       	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
