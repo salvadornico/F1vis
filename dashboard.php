@@ -150,7 +150,12 @@
 									while ($row = mysqli_fetch_assoc($drivers_result)) {
 										extract($row);
 
-										$driverName = htmlentities($driverName);
+										// Fix for x10hosting Unicode display problem
+										if ($_SERVER['SERVER_NAME'] == 'salvadornico.x10host.com') { 
+											$driverName = utf8_encode($driverName); 
+										} else {
+											$driverName = htmlentities($driverName);										
+										}
 										
 										echo "<tr>
 												<td>
