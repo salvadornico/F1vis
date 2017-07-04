@@ -151,11 +151,7 @@
 										extract($row);
 
 										// Fix for x10hosting Unicode display problem
-										if ($_SERVER['SERVER_NAME'] == 'salvadornico.x10host.com') { 
-											$driverName = utf8_encode($driverName); 
-										} else {
-											$driverName = htmlentities($driverName);										
-										}
+										if ($_SERVER['SERVER_NAME'] != 'salvadornico.x10host.com') { $driverName = htmlentities($driverName); }
 										
 										echo "<tr>
 												<td>

@@ -20,8 +20,6 @@
 			$date_arr = explode('-', $debut);
 			$debut = $date_arr[0];
 
-			// Fix for x10hosting Unicode display problem
-			if ($_SERVER['SERVER_NAME'] == 'salvadornico.x10host.com') { $driverName = utf8_encode($driverName); }
 			// array for displaying list
 			$new_driver = [$debut => [$driverId, $driverName]];
 			$debuts[] = $new_driver;
