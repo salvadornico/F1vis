@@ -140,7 +140,7 @@
 
 		</div> <!-- /container -->
 
-		<div id="legend">
+		<div id="legend" class="scale-transition">
 			<img src="images/legend.png" alt="Legend for race position graph">
 		</div>
 

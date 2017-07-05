@@ -24,10 +24,10 @@
 				// Register new user
 				if (isset($_POST['register_user'])) {
 
-					$name = $_POST['name'];
-					$username = $_POST['username'];
-					$password = $_POST['password'];
-					$confirm_password = $_POST['confirm_password'];
+					$name = htmlspecialchars($_POST['name']);
+					$username = htmlspecialchars($_POST['username']);
+					$password = htmlspecialchars($_POST['password']);
+					$confirm_password = htmlspecialchars($_POST['confirm_password']);
 					$avatar = $_POST['avatar'];
 
 					if ($password == $confirm_password && $username != '') {
@@ -46,7 +46,7 @@
 
 				// Login processing
 				if (isset($_POST['submit_login'])) {
-					$username = $_POST['username'];
+					$username = htmlspecialchars($_POST['username']);
 					$password = sha1($_POST['password']);
 
 					$result = querySQL("SELECT * FROM users WHERE username = '$username'
@@ -97,8 +97,8 @@
 
 								// if match
 								if ($password == $old_password) {
-									$new_password = $_POST['new_password'];
-									$confirm_password = $_POST['confirm_password'];
+									$new_password = htmlspecialchars($_POST['new_password']);
+									$confirm_password = htmlspecialchars($_POST['confirm_password']);
 									
 									if ($new_password == $confirm_password) {
 										$new_password = sha1($new_password);

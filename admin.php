@@ -5,7 +5,7 @@
 	require_once 'partials/header.php';
 
 	// Get number of admin users
-	$admin_result = querySQL("SELECT COUNT(userId) AS 'count' FROM `users` WHERE role = 'admin'");
+	$admin_result = querySQL("SELECT COUNT(userId) AS 'count' FROM users WHERE role = 'admin'");
 
 	if (mysqli_num_rows($admin_result) > 0) {
 		while ($row = mysqli_fetch_assoc($admin_result)) {
@@ -15,7 +15,7 @@
 	}
 
 	// Get number of regular users
-	$regular_result = querySQL("SELECT COUNT(userId) AS 'count' FROM `users` WHERE role = 'regular'");
+	$regular_result = querySQL("SELECT COUNT(userId) AS 'count' FROM users WHERE role = 'regular'");
 
 	if (mysqli_num_rows($regular_result) > 0) {
 		while ($row = mysqli_fetch_assoc($regular_result)) {

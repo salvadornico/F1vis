@@ -34,7 +34,7 @@ $(document).ready( function() {
 
 
 	setTimeout(function(){
-		legend.style.display = "none"
+		$("#legend").addClass("scale-out")
 		Materialize.toast('Click More Options to reopen legend', 3000)
 	}, 5000)
 
@@ -133,6 +133,10 @@ function scrollToTop() {
 }
 
 function toggleLegend() {
-	if (legend.style.display == "none") { legend.style.display = "block" }
-	else { legend.style.display = "none" }
+	if ($("#legend").hasClass("scale-out")) {
+		$("#legend").addClass("scale-in")
+		setTimeout(function(){
+			$("#legend").removeClass("scale-out scale-in")
+		}, 500)
+	} else { $("#legend").addClass("scale-out") }
 }
