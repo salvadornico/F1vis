@@ -56,8 +56,6 @@
 							if (mysqli_num_rows($regular_result) > 0) {
 								while ($row = mysqli_fetch_assoc($regular_result)) {
 									extract($row);
-									$driverName = utf8_encode($driverName);
-
 									echo "<tr><td>$driverName</td><td>$userCount</td></tr>";
 								}
 							}

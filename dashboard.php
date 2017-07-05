@@ -149,9 +149,6 @@
 									echo "<table class='bordered highlight'>";
 									while ($row = mysqli_fetch_assoc($drivers_result)) {
 										extract($row);
-
-										// Fix for x10hosting Unicode display problem
-										if ($_SERVER['SERVER_NAME'] != 'salvadornico.x10host.com') { $driverName = htmlentities($driverName); }
 										
 										echo "<tr>
 												<td>
