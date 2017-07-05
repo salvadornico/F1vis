@@ -18,7 +18,11 @@
 	}
 
 	if ($year > $last_year) {
-		// TODO
+		// TODO:
+		// Get elapsed rounds of $year season
+		// Get remaining rounds of $last_year season
+		// Get all rounds of anythin in between
+		// compile to $rounds_to_retrieve
 	} else if ($year == $last_year && $round > $last_round) {
 		$missing_rounds = $round - $last_round;
 
