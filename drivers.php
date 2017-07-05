@@ -4,7 +4,6 @@
 
 	require_once 'partials/header.php';
 
-	$debuts = [];
 
 	$result = querySQL("SELECT drivers.driverRef AS driverId, CONCAT(drivers.forename, ' ', drivers.surname) AS 'driverName', 
 		min(races.date) AS 'debut'
@@ -12,10 +11,10 @@
 		JOIN races ON races.raceId = driverstandings.raceId
 		GROUP BY driverName ORDER BY debut DESC");
 
+	$debuts = [];
 	if (mysqli_num_rows($result) > 0) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			extract($row);
-
 			// extract year from debut date
 			$date_arr = explode('-', $debut);
 			$debut = $date_arr[0];
@@ -67,7 +66,7 @@
 
 				</form>
 
-	      	</div>
+	      	</div> <!-- /search form -->
 
 	      	<div class="row">
 	      		
@@ -96,6 +95,7 @@
 
 	<script>
 
+		// Autocomplete script for search box
 		$(document).ready( function() {
 
 			$('input.autocomplete').autocomplete({

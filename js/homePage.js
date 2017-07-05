@@ -1,6 +1,6 @@
 $(document).ready( function() {
 
-	// set intro to fill remaining window space
+	// set intro box to fill remaining window space
 	var intro = document.getElementById("intro")
 	var introHeight = ($(window).height() - ($('#home-parallax').height() + $('nav').height()))
 	intro.style.height = introHeight + "px"
@@ -20,7 +20,7 @@ $(document).ready( function() {
     }
 	cycleThru()
 
-	// ------------------ Setup News section -------------------------
+	// Setup News section
 	var newsbox = document.getElementById("newsbox")
 
 	// Open HTTP connection
@@ -46,7 +46,7 @@ $(document).ready( function() {
 	        		var link = newsObj.response.results[i].webUrl
 
 	        		newsbox.innerHTML += "<div class='col s12 m6 l4'><div class='card small yellow lighten-5'><div class='card-content'><span class='card-title'>" + title + "</span><span class='grey-text'>" + timestamp + "</span></div><div class='card-action'><a href='" + link + "' class='green-text text-darken-4' target='_blank'>Read More...</a></div></div></div>"
-	        		articleCount++       
+	        		articleCount++
 	        	}
 	        }
 	    } else if (this.readyState == 4 && this.status != 200) {

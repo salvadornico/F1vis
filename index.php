@@ -23,7 +23,7 @@
 				<ul id="cyclelist">
 					<?php
 
-						$greetings = ['Welcome', 'Benvenuto', 'ようこそ', 'Willkommen', 'Bienvenue', 'स्वागत हे', 'Velkommen', 'Bienvenidos', 'أهلا بك', 'Välkommen', 'добро пожаловать', 'Tervetuloa', 'Welkom', 'Bem vinda', '欢迎'];
+						$greetings = ['Welcome', 'Benvenuto', 'ようこそ', 'Willkommen', 'Bienvenue', 'स्वागत हे', 'Velkommen', 'Bienvenidos', 'أهلا بك', 'Välkommen', 'добро пожаловать', 'Tervetuloa', 'Welkom', 'Bem-vindo', '欢迎'];
 
 						foreach ($greetings as $greeting) {
 							echo "<li>".htmlentities($greeting, ENT_QUOTES, 'UTF-8')."</li>";
@@ -34,10 +34,11 @@
 
 
 				<p class="flow-text">
-					An exercise in visualisation of historical driver finish data from every season of the FIA Formula 1 World Championship from 1950 to date.					<br><br>
-					Data is courtesy of the <a href="http://ergast.com/mrd/">Ergast Developer API</a> and <a href="http://open-platform.theguardian.com/">The Guardian Open Platform</a>.
+					An exercise in visualisation of historical driver finish data from every season of the FIA Formula 1 World Championship, spanning from 1950 to the present day.
+					<br><br>
+					Data is courtesy of the <a href="http://ergast.com/mrd/" target="_blank">Ergast Developer API</a> and <a href="http://open-platform.theguardian.com/" target="_blank">The Guardian Open Platform</a>.
 					<br>
-					Built with <a href="http://materializecss.com">Materialize</a>.
+					Built with <a href="http://materializecss.com" target="_blank">Materialize</a>.
 				</p>
 
 			</div>
@@ -53,6 +54,7 @@
 			<div class="row">
 				
 				<h3>Latest F1 News</h3>
+
 				<div class="row" id="newsbox">
 
 					<div class='progress'>
@@ -62,6 +64,7 @@
 					<!-- News populated by homePage.js -->
 
 				</div> <!-- /newsbox -->
+				
 				<span>
 					News stories courtesy of <a href="https://www.theguardian.com">The Guardian</a>
 				</span>

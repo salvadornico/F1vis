@@ -44,6 +44,14 @@ h5 {
 	font-size: 24px;
 }
 
+
+footer .material-icons {
+	font-size: inherit;
+}
+
+
+/* ---------------- Home ---------------- */
+
 #home-parallax {
 	height: 400px;
 }
@@ -71,17 +79,24 @@ h5 {
 
 }
 
-ul#cyclelist {
+#intro {
+	min-height: 350px;
+}
+
+#cyclelist {
 	position: relative;
 	height: 60px
 }
 
-ul#cyclelist li {
+#cyclelist li {
 	font-family: 'Raleway', sans-serif;
 	font-size: 45px;
 	opacity:0;
 	position:absolute
 }
+
+
+/* ---------------- Dashboard ---------------- */
 
 #dashboard-parallax {
 	height: 300px;
@@ -90,11 +105,6 @@ ul#cyclelist li {
 .tabs .indicator {
     background-color: #2e7d32;
 }
-
-footer .material-icons {
-	font-size: inherit;
-}
-
 
 /* ---------------- Registration / Login ---------------- */
 .reg-box {

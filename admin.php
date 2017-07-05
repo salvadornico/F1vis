@@ -10,7 +10,6 @@
 	if (mysqli_num_rows($admin_result) > 0) {
 		while ($row = mysqli_fetch_assoc($admin_result)) {
 			extract($row);
-
 			$count_admin = $count;
 		}
 	}
@@ -21,7 +20,6 @@
 	if (mysqli_num_rows($regular_result) > 0) {
 		while ($row = mysqli_fetch_assoc($regular_result)) {
 			extract($row);
-
 			$count_regular = $count;
 		}
 	}
@@ -48,13 +46,13 @@
 						<?php 
 
 							// Tally favorite drivers
-							$regular_result = querySQL("SELECT CONCAT(drivers.forename, ' ', drivers.surname) AS 'driverName',
+							$favorite_result = querySQL("SELECT CONCAT(drivers.forename, ' ', drivers.surname) AS 'driverName',
 							 COUNT(favoritedrivers.userId) as 'userCount' 
 							 FROM drivers JOIN favoritedrivers ON favoritedrivers.driverId = drivers.driverId 
 							 GROUP BY driverName ORDER BY userCount DESC, driverName");
 
-							if (mysqli_num_rows($regular_result) > 0) {
-								while ($row = mysqli_fetch_assoc($regular_result)) {
+							if (mysqli_num_rows($favorite_result) > 0) {
+								while ($row = mysqli_fetch_assoc($favorite_result)) {
 									extract($row);
 									echo "<tr><td>$driverName</td><td>$userCount</td></tr>";
 								}

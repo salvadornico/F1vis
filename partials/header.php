@@ -4,7 +4,7 @@
 
 	require_once 'partials/lib.php';
 
-	// Default setting to be overridden by driver page
+	// Default setting to be overridden by driver pages
 	$is_driver_page = false;
 
 ?>
@@ -18,7 +18,7 @@
 		<title><?php echo "$active_page | monoposto"; ?></title>
 		<link rel="icon" type="image/png" href="images/icon.png" />
 
-		<!--Import Google Fonts-->
+		<!-- Google Fonts-->
       	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
 
@@ -79,22 +79,7 @@
 	    					</div> <!-- /user-view card -->
 	    				</li>
 
-				        <?php 
-
-				        	printNav(); 
-
-			    			if(isset($_SESSION['user'])) { 
-								// logout button
-			    				echo "<li><a href='logout.php'><i class='material-icons'>perm_identity</i>Logout</a></li>";
-			    				if ($_SESSION['role'] == 'admin') {
-			    					// Admin section
-				    				echo "<li><a href='admin.php'><i class='material-icons'>settings</i>Admin Section</a></li>";
-			    				 } 
-			    			} else { 
-			    				echo "<li><a href='login.php'><i class='material-icons'>perm_identity</i>Login / Register</a></li>"; 
-			    			}				        	
-
-				        ?>
+				        <?php printNav(); ?>
 
 				    </ul>
 

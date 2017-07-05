@@ -11,8 +11,7 @@
 	$result = querySQL("SELECT drivers.driverId, users.userId FROM drivers JOIN users WHERE drivers.driverRef = '$current_driver_ref' AND users.username = '".$_SESSION['username']."'");
 	if (mysqli_num_rows($result) > 0) {
 		while ($row = mysqli_fetch_assoc($result)) {
-			extract($row);
-			
+			extract($row);			
 			$current_driver_id = $driverId;
 			$current_user = $userId;
 		}

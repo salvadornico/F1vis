@@ -6,6 +6,9 @@
 
 ?>
 
+	<!-- Default state for JS variable to handle errors when no user is signed in -->
+	<script> var isUserLoggedIn = false </script>
+
 	<main>
 		
 		<div class="parallax-container" id="dashboard-parallax">
@@ -17,9 +20,6 @@
 			<h1>Dashboard</h1>
 
 			<?php
-
-				// Default state for JS variable to handle errors when no user is signed in
-				echo "<script> var isUserLoggedIn = false </script>";
 
 				// Register new user
 				if (isset($_POST['register_user'])) {
@@ -60,7 +60,7 @@
 							$_SESSION['avatar'] = $avatar;			
 						}
 
-						echo '<META HTTP-EQUIV=REFRESH CONTENT="0; dashboard.php">';
+						header('location:dashboard.php');
 					} else {
 						echo "Login not found. Please try again.";
 					}
@@ -80,7 +80,7 @@
 						mysqli_query($conn, $sql);
 						$_SESSION['avatar'] = $new_avatar;
 
-						echo '<META HTTP-EQUIV=REFRESH CONTENT="0; dashboard.php">';
+						header('location:dashboard.php');
 					}
 
 					// changing password
@@ -296,11 +296,7 @@
     					
   					</ul>
 
-
-
     			</div> <!-- /settings tab -->
-
-
 
 			</div> <!-- /contentbox -->
 
@@ -308,4 +304,8 @@
 		
 	</main>
 
-<?php require_once 'partials/footer.php'; ?>
+<?php 
+
+	require_once 'partials/footer.php'; 
+
+?>

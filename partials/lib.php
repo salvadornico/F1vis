@@ -25,11 +25,35 @@
 
 	function printNav($classes = null) {
 		global $nav_links;
+
 		foreach ($nav_links as $link) {
 			echo "<li><a href='$link[1]'";
 			if ($classes != null) { echo " class='$classes'"; }
 			echo ">$link[2] $link[0]</a></li>";
 		}
+
+		if(isset($_SESSION['user'])) { 
+			// logout button
+			echo "<li><a href='logout.php'";
+			if ($classes != null) { echo " class='$classes'"; }
+			echo "><i class='material-icons'>perm_identity</i>Logout</a></li>";
+			if ($_SESSION['role'] == 'admin') {
+				// Admin section
+				echo "<li><a href='admin.php'";
+				if ($classes != null) { echo " class='$classes'"; }
+				echo "><i class='material-icons'>settings</i>Admin Section</a></li>";
+			 } 
+		} else { 
+			echo "<li><a href='login.php'";
+			if ($classes != null) { echo " class='$classes'"; }
+			echo "><i class='material-icons'>perm_identity</i>Login / Register</a></li>"; 
+		}
+	}
+
+	// user avatar in side nav
+	function displayAvatar() {
+		if(isset($_SESSION['user'])) { echo "avatars/avatar-" . $_SESSION['avatar'] . ".png"; }
+		else { echo "avatars/avatar-default.png"; }	
 	}
 
 
@@ -98,13 +122,6 @@
 				return $positionText;
 				break;
 		}
-	}
-
-
-	// user avatar in side nav
-	function displayAvatar() {
-		if(isset($_SESSION['user'])) { echo "avatars/avatar-" . $_SESSION['avatar'] . ".png"; }
-		else { echo "avatars/avatar-default.png"; }	
 	}
 
 ?>

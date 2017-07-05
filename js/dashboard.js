@@ -4,7 +4,7 @@ $(document).ready( function() {
 	
 	if (isUserLoggedIn) {
 
-		// ------------------ Setup standings section -------------------------
+		// Setup standings section
 		var standingsMessage = document.getElementById("standingsMessage")
 		var standingsTable = document.getElementById("standingsTable")
 		var roundLabel = document.getElementById("roundLabel")

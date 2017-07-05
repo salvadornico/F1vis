@@ -20,28 +20,25 @@ $(document).ready( function() {
 
 	        // Process data
 			var barLength = getLowestPos(racesObj)
-
 			for (i = 0; i < Object.keys(racesObj).length; i++) {
-
 				printTableRow(racesObj[i])
 				printGraphRow(racesObj[i], i, barLength)
 			}
-
 	    }
 	}
+
 	// Get JSON file
 	filePath = "js/users/results-" + currentUser + ".json"
 	xmlhttp.open("GET", filePath, true)
 	xmlhttp.send()
 
 
-	$('#backBtnFab').click( function() { scrollToTop() })
-
 	setTimeout(function(){
 		legend.style.display = "none"
 		Materialize.toast('Click More Options to reopen legend', 3000)
 	}, 5000)
 
+	$('#backBtnFab').click( function() { scrollToTop() })
 	$('#legendBtn').click( function() { toggleLegend() })	
 
 })
@@ -72,9 +69,10 @@ function printGraphRow(raceObj, index, barLength) {
 		return
 	}
 
-	// Find min & max position values for the race, accounting for DNFs
+	// Find min & max position values for the race
 	var highPos = getLower(raceObj.grid, raceObj.posNum)
 	var lowPos = getGreater(raceObj.grid, raceObj.posNum)
+	// Accounting for DNFs
 	if (lowPos == highPos && raceObj.grid != raceObj.posNum || lowPos == 0) { lowPos = barLength }
 	if (highPos == 0 ) { highPos = barLength }
 	// Accounting for races where grid = final position
@@ -110,12 +108,8 @@ function printGraphRow(raceObj, index, barLength) {
 function getLowestPos(raceObj) {
 	var max = 0;
 	for (i = 0; i < Object.keys(raceObj).length; i++) {
-		if (raceObj[i].posNum > max) {
-			max = raceObj[i].posNum
-		}
-		if (raceObj[i].grid > max) {
-			max = raceObj[i].grid
-		}
+		if (raceObj[i].posNum > max) { max = raceObj[i].posNum }
+		if (raceObj[i].grid > max) { max = raceObj[i].grid }
 	}
 	return max
 }

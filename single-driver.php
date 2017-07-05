@@ -1,6 +1,7 @@
 <?php
 
-	if (isset($_POST['submit_driver_search'])) { // search from form
+	// handles search from form
+	if (isset($_POST['submit_driver_search'])) {
 		$search_term = $_POST['driver-search'];
 
 		$conn = mysqli_connect('localhost', 'salvado8_nico', 'password', 'salvado8_f1db');
@@ -21,6 +22,9 @@
 	} else if (isset($_GET['id'])) { // from direct link
 		$current_driver_id = $_GET['id'];
 		$current_driver_name = $_GET['name'];
+	} else {
+		header("Location: driver404.php");
+		exit();
 	}
 
 	$active_page = "$current_driver_name | Drivers";
@@ -38,11 +42,8 @@
 	if (mysqli_num_rows($races_result) > 0) {
 		while ($row = mysqli_fetch_assoc($races_result)) {
 			extract($row);
-
 			// convert null values to zero
-			if ($position == null) {
-				$position = 0;
-			}
+			if ($position == null) { $position = 0; }
 
 			$new_result = [
 				'race' => $grand_prix, 
@@ -72,6 +73,7 @@
 
 			<h3 id="driver-title">Finishing Positions of <?php echo $current_driver_name; ?></h3>
 
+			<!-- Floating action button -->
 			<div class="fixed-action-btn toolbar" id="driver-fab">
 				<a class="btn-floating btn-large yellow darken-3 tooltipped" data-position="left" data-delay="50" data-tooltip="More options">
 	  				<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
@@ -108,7 +110,7 @@
       					</a>
   					</li>
       			</ul>				
-			</div>
+			</div> <!-- /FAB -->
 
 			<div id="graph" class="responsive-table clear">
 
