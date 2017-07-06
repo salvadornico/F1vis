@@ -16,28 +16,34 @@ $(document).ready( function() {
 		    if (this.readyState == 4 && this.status == 200) {
 		        standingsObj = JSON.parse(this.responseText)
 
-		        // get season & latest round
-		        var season = standingsObj.MRData.StandingsTable.season
-		        var round = standingsObj.MRData.StandingsTable.StandingsLists[0].round
+		        // Check if results are available
+		        if (standingsObj.MRData.StandingsTable.StandingsLists.length > 0) {
+			        // get season & latest round
+			        var season = standingsObj.MRData.StandingsTable.season
+			        var round = standingsObj.MRData.StandingsTable.StandingsLists[0].round
 
-		        var driverCount = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings.length
+			        var driverCount = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings.length
 
-	    		// clear failure message
-	    		standingsMessage.innerHTML = ""
+		    		// clear failure message
+		    		standingsMessage.innerHTML = ""
 
-	    		seasonLabel.innerHTML = season
-	    		roundLabel.innerHTML = round
-	    		loadingBar.style.display = "none"
+		    		seasonLabel.innerHTML = season
+		    		roundLabel.innerHTML = round
+		    		loadingBar.style.display = "none"
 
-	    		for (i = 0; i < driverCount; i++) {
-	    			var position = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].positionText
-	    			var driverName = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Driver.givenName + " " + standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Driver.familyName
-	    			var points = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].points
-	    			var constructor = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Constructors[0].name
-	    			var driverRef = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Driver.driverId
+		    		for (i = 0; i < driverCount; i++) {
+		    			var position = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].positionText
+		    			var driverName = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Driver.givenName + " " + standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Driver.familyName
+		    			var points = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].points
+		    			var constructor = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Constructors[0].name
+		    			var driverRef = standingsObj.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Driver.driverId
 
-	    			standingsTable.innerHTML += "<tr><td>" + position + "</td><td><a href='single-driver.php?id=" + driverRef + "&name=" + driverName + "'>" + driverName + "</a></td><td>" + points + "</td><td>" + constructor + "</td></tr>"
-	    		}
+		    			standingsTable.innerHTML += "<tr><td>" + position + "</td><td><a href='single-driver.php?id=" + driverRef + "&name=" + driverName + "'>" + driverName + "</a></td><td>" + points + "</td><td>" + constructor + "</td></tr>"
+		    		}
+		        } else {
+			    	standingsMessage.innerHTML = "No standings available yet for this season."	        	
+		        }
+
 		    } else if (this.readyState == 4 && this.status != 200) {
 		    	standingsMessage.innerHTML = "Problem loading standings. Please reload to try again."
 		    }
