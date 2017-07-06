@@ -75,7 +75,7 @@
 
 			<!-- Floating action button -->
 			<div class="fixed-action-btn toolbar" id="driver-fab">
-				<a class="btn-floating btn-large yellow darken-3 tooltipped" data-position="left" data-delay="50" data-tooltip="More options">
+				<a class="btn-floating btn-large yellow darken-3 tooltipped pulse" data-position="left" data-delay="50" data-tooltip="More options">
 	  				<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 				</a>
 				<ul>
