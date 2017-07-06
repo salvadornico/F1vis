@@ -125,18 +125,6 @@
 	}
 
 
-	function convertDate($string) {
-		$date_arr = explode('-', $string);
-		$year = $date_arr[0];
-		$month = intval($date_arr[1]);
-		$day = intval($date_arr[2]);
-
-		$monthsList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		$month = $monthsList[$month - 1];
-
-		return $day." ".$month." ".$year;
-	}
-
 	// For updating results
 	function updateResults($race_array) {
 		global $conn;

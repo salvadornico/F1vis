@@ -57,24 +57,11 @@
 
 				<blockquote id="next-race">
 
-					<?php
+					<div class='progress'>
+						<div class='indeterminate'></div>
+					</div>
 
-						// Display next race
-						$string = file_get_contents("http://ergast.com/api/f1/current/next.json");
-						$next_result = json_decode($string, true);
-
-						if ($next_result['MRData']['RaceTable']['Races']) {
-							$gp = $next_result['MRData']['RaceTable']['Races'][0]['season']." ".$next_result['MRData']['RaceTable']['Races'][0]['raceName'];
-							$date = convertDate($next_result['MRData']['RaceTable']['Races'][0]['date']);
-							$location = $next_result['MRData']['RaceTable']['Races'][0]['Circuit']['circuitName'];
-
-							echo "<h5>$gp</h5>";
-							echo "<span>$date - $location</span>";
-						} else {
-							echo "No next race found.";
-						}
-
-					?>
+					<!-- info populated by homePage.js -->
 					
 				</blockquote>
 
