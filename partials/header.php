@@ -44,6 +44,9 @@
 
 	<body>
 
+		<!-- Google Analytics script -->
+		<?php require_once 'partials/analyticstracking.php'; ?>
+
 		<div<?php ifHomeNav(); ?>>			
 			<nav>
 			    <div class="nav-wrapper green darken-3">
