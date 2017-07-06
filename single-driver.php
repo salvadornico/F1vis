@@ -16,14 +16,14 @@
 				$current_driver_name = htmlentities($driverName);
 			}
 		} else {
-			header("Location: driver404.php");
+			header("location: driver404.php");
 			exit();
 		}
 	} else if (isset($_GET['id'])) { // from direct link
 		$current_driver_id = $_GET['id'];
 		$current_driver_name = $_GET['name'];
 	} else {
-		header("Location: driver404.php");
+		header("location: driver404.php");
 		exit();
 	}
 

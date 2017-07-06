@@ -8,6 +8,8 @@
 	                		Visualizing Formula 1 data across history.
 	                		<br>
 	                		Data courtesy of the <a href="http://ergast.com/mrd/" target="_blank">Ergast Developer API</a>.
+	                		<br><br>
+	                		<a href="https://github.com/salvadornico/f1vis" target="_blank">View source code</a>.
 	                	</p>
 	              	</div>
 	              	<div class="col l4 offset-l2 s12">

@@ -50,7 +50,7 @@
 			<!-- Search form -->
 			<div class="row">
 
-				<form method="POST" action="single-driver.php">
+				<form method="POST" action="single-driver.php" autocomplete="off">
 					
 		        	<div class="input-field col s6">
 		          		<i class="material-icons prefix">search</i>

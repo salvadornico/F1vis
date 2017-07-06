@@ -96,10 +96,13 @@ function printGraphRow(raceObj, index, barLength) {
 	rowBar.style.left = ((barLength - lowPos) / barLength * 100) + "%"
 	// set length of bar based on delta of grid & finish
 	rowBar.style.width = ((lowPos - highPos) / barLength * 100) + "%"
-	// styling bars: win - blue, improved finish vs qualifying - green, worsened finish - red, DNF - grey
+	// styling bars: win - blue
 	if (raceObj.posNum == 1) { rowBar.style.backgroundColor = "#0d47a1" }
+	// DNF - grey
 	else if (raceObj.posNum == 0) { rowBar.style.backgroundColor = "#616161" }
+	// worsened finish - red
 	else if (raceObj. posNum > raceObj.grid) { rowBar.style.backgroundColor = "#d32f2f" }
+	// improved finish vs qualifying - green
 	else { rowBar.style.backgroundColor = "#388e3c" }
 	
 }
