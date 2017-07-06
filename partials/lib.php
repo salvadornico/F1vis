@@ -231,6 +231,9 @@
 					mysqli_query($conn, $add_result_sql);
 				}
 			}
+
+			// Delay to avoid API polling limit
+			sleep(0.3);
 		}
 	}
 

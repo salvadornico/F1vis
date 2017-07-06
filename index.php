@@ -4,41 +4,6 @@
 
 	require_once 'partials/header.php';
 
-	// CHECK FOR UPDATED RACES
-	// Get latest year & round of results
-	$string = file_get_contents("http://ergast.com/api/f1/current/last/results.json");
-	$latest_result = json_decode($string, true);
-	$year = $latest_result['MRData']['RaceTable']['Races'][0]['season'];
-	$round = $latest_result['MRData']['RaceTable']['Races'][0]['round'];
-
-	// Retrieves latest year & round from database
-	$rounds_result = querySQL("SELECT DISTINCT round AS 'last_round', year AS 'last_year' FROM races WHERE raceId = (SELECT MAX(raceId) FROM results)");
-	while ($row = mysqli_fetch_assoc($rounds_result)) {
-		extract($row);
-	}
-
-	if ($year > $last_year) {
-		// TODO:
-		// Get elapsed rounds of $year season
-		// Get remaining rounds of $last_year season
-		// Get all rounds of anythin in between
-		// compile to $rounds_to_retrieve
-	} else if ($year == $last_year && $round > $last_round) {
-		$missing_rounds = $round - $last_round;
-
-		$rounds_to_retrieve = [];
-		for ($i = 1; $i <= $missing_rounds; $i++) { 
-			$rounds_to_retrieve[] = [$year, $last_round + $i];
-		}
-
-		echo "<script> Materialize.toast('Database updated by $missing_rounds rounds', 4000) </script>";
-
-		updateResults($rounds_to_retrieve);
-
-	} else {
-		echo "<script> Materialize.toast('Database up to date', 4000) </script>";
-	}
-
 ?>
 
 	<main>
@@ -94,17 +59,20 @@
 
 					<?php
 
-						$next_round = $round + 1;
-
-						$string = file_get_contents("http://ergast.com/api/f1/$year/$next_round.json");
+						// Display next race
+						$string = file_get_contents("http://ergast.com/api/f1/current/next.json");
 						$next_result = json_decode($string, true);
 
-						$gp = $next_result['MRData']['RaceTable']['Races'][0]['season']." ".$next_result['MRData']['RaceTable']['Races'][0]['raceName'];
-						$date = convertDate($next_result['MRData']['RaceTable']['Races'][0]['date']);
-						$location = $next_result['MRData']['RaceTable']['Races'][0]['Circuit']['circuitName'];
+						if ($next_result['MRData']['RaceTable']['Races']) {
+							$gp = $next_result['MRData']['RaceTable']['Races'][0]['season']." ".$next_result['MRData']['RaceTable']['Races'][0]['raceName'];
+							$date = convertDate($next_result['MRData']['RaceTable']['Races'][0]['date']);
+							$location = $next_result['MRData']['RaceTable']['Races'][0]['Circuit']['circuitName'];
 
-						echo "<h5>$gp</h5>";
-						echo "<span>$date - $location</span>";
+							echo "<h5>$gp</h5>";
+							echo "<span>$date - $location</span>";
+						} else {
+							echo "No next race found.";
+						}
 
 					?>
 					
