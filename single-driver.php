@@ -84,7 +84,7 @@
 				<ul>
 					<?php
 
-	      				if (isset($_SESSION['username'])) {
+	      				if (isset($_SESSION['user'])) {
 		      				echo "<li class='waves-effect waves-light'>
 		      						<a href='add-remove-driver.php?id=$current_driver_id&action=add' id='scrollUpBtn'>
 		      							<i class='fa fa-plus' aria-hidden='true'></i>
