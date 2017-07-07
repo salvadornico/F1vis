@@ -46,7 +46,7 @@ $(document).ready( function() {
 
 	setTimeout(function(){
 		$("a.btn-floating").removeClass("pulse")
-	}, 10000)
+	}, 20000)
 
 	$("#backBtnFab").click( function() { scrollToTop() })
 	$("#legendBtn").click( function() { toggleLegend() })	
