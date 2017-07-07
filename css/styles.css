@@ -114,6 +114,14 @@ footer .material-icons {
     background-color: #2e7d32;
 }
 
+.admin-form button {
+	width: 250px;
+}
+
+.admin-form span {
+	line-height: 40px;
+}
+
 /* ---------------- Registration / Login ---------------- */
 .reg-box {
 	margin: 20px auto;

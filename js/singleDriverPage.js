@@ -28,7 +28,7 @@ $(document).ready( function() {
 	}
 
 	// Get JSON file
-	filePath = "js/users/results-" + currentUser + ".json"
+	filePath = "js/temp/results-" + currentUser + ".json"
 	xmlhttp.open("GET", filePath, true)
 	xmlhttp.send()
 

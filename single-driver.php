@@ -56,10 +56,13 @@
 		}
 	}
 
-	// Export to separate JSON files per user
-	if (isset($_SESSION['username'])) { $user = $_SESSION['username']; }
-	else { $user = "default"; }
-	$fp = fopen('js/users/results-'.$user.'.json', 'w');
+	// Export to separate JSON files per user to prevent conflicts with concurrent users
+	if (!isset($_SESSION['username'])) {
+		// Create temporary username
+		$_SESSION['username'] = time();
+	}
+	$user = $_SESSION['username'];
+	$fp = fopen('js/temp/results-'.$user.'.json', 'w');
 	// Pass username to JS
 	echo "<script> var currentUser = '$user' </script>";
 	fwrite($fp, json_encode($results, JSON_PRETTY_PRINT));
