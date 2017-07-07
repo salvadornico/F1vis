@@ -76,44 +76,6 @@
 
 			<h3 id="driver-title">Finishing Positions of <?php echo $current_driver_name; ?></h3>
 
-			<!-- Floating action button -->
-			<div class="fixed-action-btn toolbar" id="driver-fab">
-				<a class="btn-floating btn-large yellow darken-3 pulse">
-	  				<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-				</a>
-				<ul>
-					<?php
-
-	      				if (isset($_SESSION['user'])) {
-		      				echo "<li class='waves-effect waves-light'>
-		      						<a href='add-remove-driver.php?id=$current_driver_id&action=add' id='scrollUpBtn'>
-		      							<i class='fa fa-plus' aria-hidden='true'></i>
-		      							<span class='hide-on-small-only'>&nbsp;&nbsp;Add to favorites</span>
-		      						</a
-		      					</li>";
-	      				}
-
-					?>
-      				<li class="waves-effect waves-light">
-      					<a id="backBtnFab">
-      						<i class="fa fa-chevron-up" aria-hidden="true"></i>
-      						<span class="hide-on-small-only">&nbsp;&nbsp;Back to top</span>
-      					</a>
-  					</li>
-      				<li class="waves-effect waves-light">
-      					<a href="drivers.php">
-      						<i class="fa fa-address-card" aria-hidden="true"></i>
-      						<span class="hide-on-small-only">&nbsp;&nbsp;Back to Drivers List</span>
-      					</a>
-  					</li>
-  					<li class="waves-effect waves-light">
-      					<a id="legendBtn">
-      						<i class="fa fa-info-circle" aria-hidden="true"></i>
-      						<span class="hide-on-small-only">&nbsp;&nbsp;Toggle legend</span>
-      					</a>
-  					</li>
-      			</ul>				
-			</div> <!-- /FAB -->
 
 			<div id="graph" class="responsive-table clear">
 
@@ -142,6 +104,45 @@
 			</table>
 
 		</div> <!-- /container -->
+		
+		<!-- Floating action button -->
+		<div class="fixed-action-btn toolbar" id="driver-fab">
+			<a class="btn-floating btn-large yellow darken-3 pulse">
+  				<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+			</a>
+			<ul>
+				<?php
+
+      				if (isset($_SESSION['user'])) {
+	      				echo "<li class='waves-effect waves-light'>
+	      						<a href='add-remove-driver.php?id=$current_driver_id&action=add' id='scrollUpBtn'>
+	      							<i class='fa fa-plus' aria-hidden='true'></i>
+	      							<span class='hide-on-small-only'>&nbsp;&nbsp;Add to favorites</span>
+	      						</a
+	      					</li>";
+      				}
+
+				?>
+  				<li class="waves-effect waves-light">
+  					<a id="backBtnFab">
+  						<i class="fa fa-chevron-up" aria-hidden="true"></i>
+  						<span class="hide-on-small-only">&nbsp;&nbsp;Back to top</span>
+  					</a>
+					</li>
+  				<li class="waves-effect waves-light">
+  					<a href="drivers.php">
+  						<i class="fa fa-address-card" aria-hidden="true"></i>
+  						<span class="hide-on-small-only">&nbsp;&nbsp;Back to Drivers List</span>
+  					</a>
+					</li>
+					<li class="waves-effect waves-light">
+  					<a id="legendBtn">
+  						<i class="fa fa-info-circle" aria-hidden="true"></i>
+  						<span class="hide-on-small-only">&nbsp;&nbsp;Toggle legend</span>
+  					</a>
+					</li>
+  			</ul>				
+		</div> <!-- /FAB -->
 
 		<div id="legend" class="scale-transition">
 			<img src="images/legend.png" alt="Legend for race position graph">

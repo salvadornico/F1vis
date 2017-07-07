@@ -2,7 +2,7 @@ $(document).ready( function() {
 
 	// set intro box to fill remaining window space
 	var intro = document.getElementById("intro")
-	var introHeight = ($(window).height() - ($('#home-parallax').height() + $('nav').height()))
+	var introHeight = ($(window).height() - ($("#home-parallax").height() + $("nav").height()))
 	intro.style.height = introHeight + "px"
 
 	// cycle through welcome greetings
@@ -87,7 +87,7 @@ $(document).ready( function() {
 	newsXmlhttp.send()
 })
 
-monthsList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+monthsList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 function convertTimestamp(rawString, mode = "date") {
 	// run regex search

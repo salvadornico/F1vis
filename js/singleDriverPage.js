@@ -40,7 +40,7 @@ $(document).ready( function() {
 	} else {
 		setTimeout(function(){
 			$("#legend").addClass("scale-out")
-			Materialize.toast('Click More Options to reopen legend', 3000)
+			Materialize.toast("Click More Options to reopen legend", 3000)
 		}, 5000)		
 	}
 
@@ -48,8 +48,9 @@ $(document).ready( function() {
 		$("a.btn-floating").removeClass("pulse")
 	}, 10000)
 
-	$('#backBtnFab').click( function() { scrollToTop() })
-	$('#legendBtn').click( function() { toggleLegend() })	
+	$("#backBtnFab").click( function() { scrollToTop() })
+	$("#legendBtn").click( function() { toggleLegend() })	
+	$("#legend").click( function() { toggleLegend() })	
 
 })
 

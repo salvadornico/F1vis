@@ -201,10 +201,6 @@ footer .material-icons {
 	right: 40px;
 }
 
-#driver-fab li a {
-	width: 40%;
-}
-
 #driver-fab > button > i {
 	line-height: 50px;
 }
@@ -235,6 +231,10 @@ footer .material-icons {
 }
 
 @media (max-width: 600px) {
+
+	#driver-fab li a {
+		width: 40%;
+	}
 
 	#legend {
 	right: 10%;
