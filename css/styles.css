@@ -111,6 +111,14 @@ footer .material-icons {
 	position:absolute
 }
 
+@media (max-width: 600px) {
+
+	#cyclelist li {
+		font-size: 35px;		
+	}
+
+}
+
 #next-race {
 	border-left: 5px solid #2e7d32;
 }
