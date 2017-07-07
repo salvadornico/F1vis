@@ -119,11 +119,11 @@
 
 			<div class="row">
 				<form method="POST" class="admin-form">
-					<div class="col s5 offset-s2">
+					<div class="col s12 m5 offset-m2">
 						<span>Database updated as of: </span>
 						<span><?php echo "Round $last_round - $last_year season"; ?></span>
 					</div>
-					<div class="col s5">
+					<div class="col s12 m5">
 						<button class="waves-effect waves-light btn yellow darken-3" name="update_check" value="check">
 							Check for updates
 						</button>
@@ -133,11 +133,11 @@
 
 			<div class="row">
 				<form method="POST" class="admin-form">
-					<div class="col s5 offset-s2">
+					<div class="col m5 offset-m2">
 						<span>Files in Temp folder:</span>
 						<span><?php echo $num_temp_files; ?></span>
 					</div>
-					<div class="col s5">
+					<div class="col s12 m5">
 						<button class="waves-effect waves-light btn yellow darken-3" name="cleanup_json" value="flush">
 							Clean up
 						</button>

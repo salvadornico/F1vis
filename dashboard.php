@@ -131,172 +131,176 @@
       				</ul>
     			</div>
 
-    			<div id="drivers" class="col s12">
+    			<!-- Wrapper for content divs -->
+    			<div>
 
-					<h3>Favorite Drivers</h3>
+	    			<div id="drivers" class="col s12">
 
-					<div class="row">
+						<h3>Favorite Drivers</h3>
 
-						<div class="col s12 m6">
-							
-							<!-- Retrieving favorite drivers -->
-							<?php
+						<div class="row">
 
-								$username = $_SESSION['username'];
+							<div class="col s12 m6">
+								
+								<!-- Retrieving favorite drivers -->
+								<?php
 
-								$drivers_result = querySQL("SELECT DISTINCT drivers.driverRef, CONCAT(drivers.forename, ' ', drivers.surname) AS 'driverName' FROM drivers JOIN favoritedrivers ON drivers.driverId = favoritedrivers.driverId JOIN users ON users.userId = favoritedrivers.userId WHERE users.username = '$username'");
-								if (mysqli_num_rows($drivers_result) > 0) {
-									echo "<table class='bordered highlight'>";
-									while ($row = mysqli_fetch_assoc($drivers_result)) {
-										extract($row);
-										
-										echo "<tr>
-												<td>
-													<a href='single-driver.php?id=$driverRef&name=$driverName'>
-														$driverName
-													</a>
-												</td>
-												<td>
-													<a href='add-remove-driver.php?id=$driverRef&action=del' class='btn-flat red-text waves-red right-align'>
-														Remove
-													</a>
-											</tr>";			
+									$username = $_SESSION['username'];
+
+									$drivers_result = querySQL("SELECT DISTINCT drivers.driverRef, CONCAT(drivers.forename, ' ', drivers.surname) AS 'driverName' FROM drivers JOIN favoritedrivers ON drivers.driverId = favoritedrivers.driverId JOIN users ON users.userId = favoritedrivers.userId WHERE users.username = '$username'");
+									if (mysqli_num_rows($drivers_result) > 0) {
+										echo "<table class='bordered highlight'>";
+										while ($row = mysqli_fetch_assoc($drivers_result)) {
+											extract($row);
+											
+											echo "<tr>
+													<td>
+														<a href='single-driver.php?id=$driverRef&name=$driverName'>
+															$driverName
+														</a>
+													</td>
+													<td>
+														<a href='add-remove-driver.php?id=$driverRef&action=del' class='btn-flat red-text waves-red right-align'>
+															Remove
+														</a>
+												</tr>";			
+										}
+										echo "</table>";
+									} else {
+										echo "No drivers added. Go to <a href='drivers.php'>the database</a> and add some!";
 									}
-									echo "</table>";
-								} else {
-									echo "No drivers added. Go to <a href='drivers.php'>the database</a> and add some!";
-								}
 
-							?>
+								?>
 
-						</div>
-						
-						<div class="col s12 m4 center-align">
-							<a href="drivers.php" class="waves-effect waves-light btn-large yellow darken-3">
-								Add
-							</a>
-						</div>
-
-					</div>
-
-
-
-    			</div> <!-- /drivers tab -->
-
-    			<div id="updates" class="col s12">
-
-					<h3>Drivers' Championship Standings</h3>
-
-					<div class='progress' id="standingsLoadingBar">
-						<div class='indeterminate'></div>
-					</div>
-
-					<span>
-						As of Round <span id="roundLabel"></span>, <span id="seasonLabel"></span> season
-					</span>
-					
-					<div class="row" id="standingsbox">
-
-
-						<table id="standingsTable" class="highlight">
-							<tr>
-								<th>Pos</th>
-								<th>Driver</th>
-								<th>Points</th>
-								<th>Constructor</th>
-							</tr>
-
+							</div>
 							
-							<!-- Data populated by dashboard.js -->
+							<div class="col s12 m4 center-align">
+								<a href="drivers.php" class="waves-effect waves-light btn-large yellow darken-3">
+									Add
+								</a>
+							</div>
 
-						</table>
+						</div>
 
-						<span id="standingsMessage"></span>
+	    			</div> <!-- /drivers tab -->
 
-					</div> <!-- /standingsbox -->
+	    			<div id="updates" class="col s12">
 
-    			</div> <!-- /updates tab -->
+						<h3>Drivers' Championship Standings</h3>
 
-    			<div id="settings" class="col s12">
+						<div class='progress' id="standingsLoadingBar">
+							<div class='indeterminate'></div>
+						</div>
 
-    				<h3>Account Settings</h3>
+						<span>
+							As of Round <span id="roundLabel"></span>, <span id="seasonLabel"></span> season
+						</span>
+						
+						<div class="row" id="standingsbox">
 
-    				<ul class="collapsible" data-collapsible="accordion">
 
-	    				<!-- Change avatar -->
-    					<li>
-      						<div class="collapsible-header">Change avatar</div>
-      						<div class="collapsible-body">
-			    				<div class="row">
-			    					<form method="POST" class="col s12">
+							<table id="standingsTable" class="highlight">
+								<tr>
+									<th>Pos</th>
+									<th>Driver</th>
+									<th>Points</th>
+									<th>Constructor</th>
+								</tr>
 
-			    						<!-- Avatar select -->
-			    						<div class="row">
-				    						<h5>Change your avatar</h5>
-			    						</div>
+								
+								<!-- Data populated by dashboard.js -->
 
-						      			<div class="row">
-			    							<?php printAvatars(); ?>
-						      			</div> <!-- /avatar row -->
+							</table>
 
-						      			<div class="row">
-						      				<div class="col s2">
-						      					<button class="waves-effect waves-light btn blue darken-4" name="change_avatar" value="change">
-													Save
-												</button>
-						      				</div>
-						      			</div>
+							<span id="standingsMessage"></span>
 
-			    					</form>
-			    				</div> <!-- /form row -->
-      						</div> <!-- /collapsible body -->
-    					</li> <!-- /change avatar -->
+						</div> <!-- /standingsbox -->
 
-	    				<!-- Change password -->
-    					<li>
-      						<div class="collapsible-header">Change password</div>
-      						<div class="collapsible-body">
-			    				<div class="row">
-			    					<form method="POST" class="col s12">
+	    			</div> <!-- /updates tab -->
 
-			    						<!-- Avatar select -->
-			    						<div class="row">
-				    						<h5>Change your password</h5>
-			    						</div>
+	    			<div id="settings" class="col s12">
 
-			    						<div class="row">
-			    							<div class="input-field col s12 m6">
-						          				<input id="old_password" name="old_password" type="password" class="validate" required>
-						          				<label for="old_password">Current password</label>
-						        			</div>
-			    						</div>
-						      			<div class="row">
-						        			<div class="input-field col s12 m6">
-						          				<input id="new_password" name="new_password" type="password" class="validate" required>
-						          				<label for="new_password">New password</label>
-						        			</div>
-						        			<div class="input-field col s12 m6">
-						          				<input id="confirm_password" name="confirm_password" type="password" class="validate" required>
-						          				<label for="confirm_password">Confirm new password</label>
-						        			</div>
-						      			</div>
+	    				<h3>Account Settings</h3>
 
-						      			<div class="row">
-						      				<div class="col s2">
-						      					<button class="waves-effect waves-light btn blue darken-4" name="change_password" value="change">
-													Save
-												</button>
-						      				</div>
-						      			</div>
+	    				<ul class="collapsible" data-collapsible="accordion">
 
-			    					</form>
-			    				</div> <!-- /form row -->
-      						</div> <!-- /collapsible body -->
-    					</li> <!-- /change password -->
-    					
-  					</ul>
+		    				<!-- Change avatar -->
+	    					<li>
+	      						<div class="collapsible-header">Change avatar</div>
+	      						<div class="collapsible-body">
+				    				<div class="row">
+				    					<form method="POST" class="col s12">
 
-    			</div> <!-- /settings tab -->
+				    						<!-- Avatar select -->
+				    						<div class="row">
+					    						<h5>Change your avatar</h5>
+				    						</div>
+
+							      			<div class="row">
+				    							<?php printAvatars(); ?>
+							      			</div> <!-- /avatar row -->
+
+							      			<div class="row">
+							      				<div class="col s2">
+							      					<button class="waves-effect waves-light btn blue darken-4" name="change_avatar" value="change">
+														Save
+													</button>
+							      				</div>
+							      			</div>
+
+				    					</form>
+				    				</div> <!-- /form row -->
+	      						</div> <!-- /collapsible body -->
+	    					</li> <!-- /change avatar -->
+
+		    				<!-- Change password -->
+	    					<li>
+	      						<div class="collapsible-header">Change password</div>
+	      						<div class="collapsible-body">
+				    				<div class="row">
+				    					<form method="POST" class="col s12">
+
+				    						<!-- Avatar select -->
+				    						<div class="row">
+					    						<h5>Change your password</h5>
+				    						</div>
+
+				    						<div class="row">
+				    							<div class="input-field col s12 m6">
+							          				<input id="old_password" name="old_password" type="password" class="validate" required>
+							          				<label for="old_password">Current password</label>
+							        			</div>
+				    						</div>
+							      			<div class="row">
+							        			<div class="input-field col s12 m6">
+							          				<input id="new_password" name="new_password" type="password" class="validate" required>
+							          				<label for="new_password">New password</label>
+							        			</div>
+							        			<div class="input-field col s12 m6">
+							          				<input id="confirm_password" name="confirm_password" type="password" class="validate" required>
+							          				<label for="confirm_password">Confirm new password</label>
+							        			</div>
+							      			</div>
+
+							      			<div class="row">
+							      				<div class="col s2">
+							      					<button class="waves-effect waves-light btn blue darken-4" name="change_password" value="change">
+														Save
+													</button>
+							      				</div>
+							      			</div>
+
+				    					</form>
+				    				</div> <!-- /form row -->
+	      						</div> <!-- /collapsible body -->
+	    					</li> <!-- /change password -->
+	    					
+	  					</ul>
+
+	    			</div> <!-- /settings tab -->
+
+    			</div>
+
 
 			</div> <!-- /contentbox -->
 

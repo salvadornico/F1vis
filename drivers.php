@@ -52,13 +52,13 @@
 
 				<form method="POST" action="single-driver.php" autocomplete="off">
 					
-		        	<div class="input-field col s6">
+		        	<div class="input-field col s12 m6">
 		          		<i class="material-icons prefix">search</i>
 		          		<input type="text" name="driver-search" id="driver-search" class="autocomplete">
 		          		<label for="driver-search">Search</label>
 		        	</div>
 
-		        	<div class="input-field col s2">
+		        	<div class="input-field col s10 offset-s2 m2">
 		        		<button class="waves-effect waves-light btn green darken-3" name="submit_driver_search" value="search">
 							Go
 						</button>

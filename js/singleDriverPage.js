@@ -33,10 +33,20 @@ $(document).ready( function() {
 	xmlhttp.send()
 
 
-	setTimeout(function(){
+	// FAB behavior
+	if ($(window).width() < 600) {
 		$("#legend").addClass("scale-out")
-		Materialize.toast('Click More Options to reopen legend', 3000)
-	}, 5000)
+		$(window).scroll(function(){ $("#legend").addClass("scale-out") })
+	} else {
+		setTimeout(function(){
+			$("#legend").addClass("scale-out")
+			Materialize.toast('Click More Options to reopen legend', 3000)
+		}, 5000)		
+	}
+
+	setTimeout(function(){
+		$("a.btn-floating").removeClass("pulse")
+	}, 10000)
 
 	$('#backBtnFab').click( function() { scrollToTop() })
 	$('#legendBtn').click( function() { toggleLegend() })	

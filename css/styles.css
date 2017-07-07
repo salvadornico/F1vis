@@ -27,6 +27,22 @@ h5 {
     font-family: 'Raleway', sans-serif;
 }
 
+@media (max-width: 600px) {
+
+	h1 {
+		font-size: 45px;		
+	}
+
+	h2 {
+		font-size: 40px;		
+	}
+
+	h3 {
+		font-size: 30px;
+	}
+
+}
+
 .brand-logo img {
 	height: 54px;
 	margin-top: 5px;
@@ -177,6 +193,10 @@ footer .material-icons {
 	right: 40px;
 }
 
+#driver-fab li a {
+	width: 40%;
+}
+
 #driver-fab > button > i {
 	line-height: 50px;
 }
@@ -193,14 +213,24 @@ footer .material-icons {
 	opacity: 0.5;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 992px) {
 
 	#legend {
-	width: 40%;
+	right: 10%;
+	width: 50%;
 	}
 
 	#legend img {
 		opacity: 0.9;
+	}
+
+}
+
+@media (max-width: 600px) {
+
+	#legend {
+	right: 10%;
+	width: 80%;
 	}
 
 }
