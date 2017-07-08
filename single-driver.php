@@ -57,11 +57,11 @@
 	}
 
 	// Export to separate JSON files per user to prevent conflicts with concurrent users
-	if (!isset($_SESSION['username'])) {
-		// Create temporary username
-		$_SESSION['username'] = time();
-	}
+	if (!isset($_SESSION['username'])) { $_SESSION['username'] = time(); } // Create temporary username
 	$user = $_SESSION['username'];
+	// create directory if not yet there
+	if (!file_exists('js/temp')) { mkdir('js/temp'); }
+
 	$fp = fopen('js/temp/results-'.$user.'.json', 'w');
 	// Pass username to JS
 	echo "<script> var currentUser = '$user' </script>";
