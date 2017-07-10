@@ -4,16 +4,12 @@ $(document).ready( function() {
 	var intro = document.getElementById("intro")
 	var introHeight = ($(window).height() - ($("#home-parallax").height() + $("nav").height()))
 	intro.style.height = introHeight + "px"
+	var nextRace = document.getElementById("next-race")
 
 	// cycle through welcome greetings
-	var cycleIndex = 0
-	var cycleDelay = 2000
 	cycleThru()
 
 	// Setup Next Race section
-	var nextRace = document.getElementById("next-race")
-
-	// Open HTTP connection
 	var raceXmlhttp = new XMLHttpRequest()
 	raceXmlhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
@@ -31,7 +27,7 @@ $(document).ready( function() {
 				nextRace.innerHTML = "No next race found."
 			}
 	    } else if (this.readyState == 4 && this.status != 200) {
-	    	nextRace.innerHTML = "Problem loading next race. Please reload to try again."
+	    	nextRace.innerHTML = "Problem loading next race. Please check your internet connection and reload to try again."
 	    }
 	}
 
@@ -68,7 +64,7 @@ $(document).ready( function() {
 	        	}
 	        }
 	    } else if (this.readyState == 4 && this.status != 200) {
-	    	newsbox.innerHTML = "Problem loading news. Please reload to try again."
+	    	newsbox.innerHTML = "Problem loading news. Please check your internet connection and reload to try again."
 	    }
 	}
 
@@ -79,6 +75,9 @@ $(document).ready( function() {
 
 
 function cycleThru(){
+	var cycleIndex = 0
+	var cycleDelay = 2000
+
     var jmax = $("ul#cyclelist li").length - 1
     $("ul#cyclelist li:eq(" + cycleIndex + ")")
         .animate({ "opacity" : "1" }, 400)
