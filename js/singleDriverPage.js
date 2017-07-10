@@ -20,9 +20,9 @@ $(document).ready( function() {
 
 	        // Process data
 			var barLength = getLowestPos(racesObj)
-			for (i = 0; i < Object.keys(racesObj).length; i++) {
+			for (i = 0; i < racesObj.length; i++) {
 				printTableRow(racesObj[i])
-				printGraphRow(racesObj[i], i, barLength)
+				printGraphRow(racesObj[i], i)
 			}
 	    }
 	}
@@ -62,7 +62,7 @@ function printTableRow(raceObj) {
 			"</td></tr>"	
 }
 
-function printGraphRow(raceObj, index, barLength) {
+function printGraphRow(raceObj, index) {
 	graph.innerHTML += "<div class='data-row left' id='row-" + index + "'></div>"
 
 	var row = document.getElementById("row-" + index)
