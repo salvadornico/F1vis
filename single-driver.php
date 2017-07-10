@@ -16,15 +16,13 @@
 				$current_driver_name = htmlentities($driverName);
 			}
 		} else {
-			header("location: driver404.php");
-			exit();
+			showDriver404();
 		}
 	} else if (isset($_GET['id'])) { // from direct link
 		$current_driver_id = $_GET['id'];
 		$current_driver_name = $_GET['name'];
 	} else {
-		header("location: driver404.php");
-		exit();
+		showDriver404();
 	}
 
 	$active_page = "$current_driver_name | Drivers";
@@ -57,7 +55,8 @@
 	}
 
 	// Export to separate JSON files per user to prevent conflicts with concurrent users
-	if (!isset($_SESSION['username'])) { $_SESSION['username'] = time(); } // Create temporary username
+	// Create temporary username
+	if (!isset($_SESSION['username'])) { $_SESSION['username'] = time(); } 
 	$user = $_SESSION['username'];
 	// create directory if not yet there
 	if (!file_exists('js/temp')) { mkdir('js/temp'); }

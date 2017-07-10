@@ -6,18 +6,8 @@ $(document).ready( function() {
 	intro.style.height = introHeight + "px"
 
 	// cycle through welcome greetings
-	var j = 0
-	var delay = 2000 //millisecond delay between cycles
-	function cycleThru(){
-	    var jmax = $("ul#cyclelist li").length -1
-	    $("ul#cyclelist li:eq(" + j + ")")
-            .animate({"opacity" : "1"} ,400)
-            .animate({"opacity" : "1"}, delay)
-            .animate({"opacity" : "0"}, 400, function(){
-                (j == jmax) ? j=0 : j++
-                cycleThru()
-	        })
-    }
+	var cycleIndex = 0
+	var cycleDelay = 2000
 	cycleThru()
 
 	// Setup Next Race section
@@ -70,7 +60,7 @@ $(document).ready( function() {
 	        		if (articleCount == 6) { return }
 
 	        		var title = newsObj.response.results[i].webTitle
-	        		var timestamp = convertTimestamp(newsObj.response.results[i].webPublicationDate, "timestamp")
+	        		var timestamp = convertTimestamp(newsObj.response.results[i].webPublicationDate)
 	        		var link = newsObj.response.results[i].webUrl
 
 	        		newsbox.innerHTML += "<div class='col s12 m6 l4'><div class='card small yellow lighten-5'><div class='card-content'><span class='card-title'>" + title + "</span><span class='grey-text'>" + timestamp + "</span></div><div class='card-action'><a href='" + link + "' class='green-text text-darken-4' target='_blank'>Read More...</a></div></div></div>"
@@ -87,9 +77,21 @@ $(document).ready( function() {
 	newsXmlhttp.send()
 })
 
+
+function cycleThru(){
+    var jmax = $("ul#cyclelist li").length - 1
+    $("ul#cyclelist li:eq(" + cycleIndex + ")")
+        .animate({ "opacity" : "1" }, 400)
+        .animate({ "opacity" : "1" }, cycleDelay)
+        .animate({ "opacity" : "0" }, 400, function(){
+            (cycleIndex == jmax) ? cycleIndex = 0 : cycleIndex++
+            cycleThru()
+        })
+}
+
 monthsList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-function convertTimestamp(rawString, mode = "date") {
+function convertTimestamp(rawString) {
 	// run regex search
 	var timestampRegex = /(\d{4})-(\d{2})-(\d{2})(T(\d{2}):(\d{2}):(\d{2})Z)*/
 	var result = timestampRegex.exec(rawString)
@@ -101,7 +103,7 @@ function convertTimestamp(rawString, mode = "date") {
 	// convert numerical month to word
 	month = monthsList[month - 1]
 
-	if (mode == "timestamp") {
+	if (result[5]) {
 		var hour = parseInt(result[5])
 		var minute = result[6]
 		var period = "AM"

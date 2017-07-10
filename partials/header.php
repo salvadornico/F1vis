@@ -47,12 +47,12 @@
 		<!-- Google Analytics script -->
 		<?php require_once 'partials/analyticstracking.php'; ?>
 
-		<div<?php ifHomeNav(); ?>>			
+		<div<?php isHomeNav(); ?>>			
 			<nav>
 			    <div class="nav-wrapper green darken-3">
 
 			    	<a href="index.php" class="brand-logo center">
-			    		<img src="images/<?php ifHomeLogo(); ?>" alt="Monoposto logo">
+			    		<img src="images/<?php isHomeLogo(); ?>" alt="Monoposto logo">
 			    	</a>
 
 	      			<a href="#" data-activates="side-menu" class="button-collapse show-on-large">

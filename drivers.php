@@ -30,7 +30,7 @@
 	foreach ($debuts as $debut) {
 		foreach ($debut as $year => $driver) {
 			// if year is in array
-			if (searchForYear($year, $collated_debuts)) {
+			if (yearInArray($year, $collated_debuts)) {
 				// append driver to correct year
 				array_push($collated_debuts[$year], $driver);
 			} else {
