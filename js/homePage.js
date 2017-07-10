@@ -7,6 +7,18 @@ $(document).ready( function() {
 	var nextRace = document.getElementById("next-race")
 
 	// cycle through welcome greetings
+	var cycleIndex = 0
+	var delay = 2000
+	function cycleThru() {
+	    var jmax = $("ul#cyclelist li").length -1
+	    $("ul#cyclelist li:eq(" + cycleIndex + ")")
+            .animate({"opacity" : "1"}, 400)
+            .animate({"opacity" : "1"}, delay)
+            .animate({"opacity" : "0"}, 400, function(){
+                (cycleIndex == jmax) ? cycleIndex=0 : cycleIndex++
+                cycleThru()
+	        })
+    }
 	cycleThru()
 
 	// Setup Next Race section
@@ -73,20 +85,6 @@ $(document).ready( function() {
 	newsXmlhttp.send()
 })
 
-
-function cycleThru(){
-	var cycleIndex = 0
-	var cycleDelay = 2000
-
-    var jmax = $("ul#cyclelist li").length - 1
-    $("ul#cyclelist li:eq(" + cycleIndex + ")")
-        .animate({ "opacity" : "1" }, 400)
-        .animate({ "opacity" : "1" }, cycleDelay)
-        .animate({ "opacity" : "0" }, 400, function(){
-            (cycleIndex == jmax) ? cycleIndex = 0 : cycleIndex++
-            cycleThru()
-        })
-}
 
 monthsList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
