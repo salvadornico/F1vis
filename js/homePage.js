@@ -61,26 +61,19 @@ $(document).ready( function() {
     		// start counter for sport articles
 	        var articleCount = 0
 	        
-	        for (i = 0; i < newsObj.response.results.length; i++) {
-	        	// filter out unrelated news
-	        	if (newsObj.response.results[i].sectionId == "sport") {
-	        		// exit after 6 articles
-	        		if (articleCount == 6) { return }
+	        for (i = 0; i < 6; i++) {
+        		var title = newsObj.response.results[i].webTitle
+        		var timestamp = convertTimestamp(newsObj.response.results[i].webPublicationDate)
+        		var link = newsObj.response.results[i].webUrl
 
-	        		var title = newsObj.response.results[i].webTitle
-	        		var timestamp = convertTimestamp(newsObj.response.results[i].webPublicationDate)
-	        		var link = newsObj.response.results[i].webUrl
-
-	        		newsbox.innerHTML += "<div class='col s12 m6 l4'><div class='card small yellow lighten-5'><div class='card-content'><span class='card-title'>" + title + "</span><span class='grey-text'>" + timestamp + "</span></div><div class='card-action'><a href='" + link + "' class='green-text text-darken-4' target='_blank'>Read More...</a></div></div></div>"
-	        		articleCount++
-	        	}
+        		newsbox.innerHTML += "<div class='col s12 m6 l4'><div class='card small yellow lighten-5'><div class='card-content'><span class='card-title'>" + title + "</span><span class='grey-text'>" + timestamp + "</span></div><div class='card-action'><a href='" + link + "' class='green-text text-darken-4' target='_blank'>Read More...</a></div></div></div>"
 	        }
 	    } else if (this.readyState == 4 && this.status != 200) {
 	    	newsbox.innerHTML = "Problem loading news. Please check your internet connection and reload to try again."
 	    }
 	}
 
-	var newsApiUrl = "http://content.guardianapis.com/search?order-by=newest&q=f1&api-key=4ba1d878-9a90-4e98-8554-de2a8a5300e7"
+	var newsApiUrl = "http://content.guardianapis.com/search?section=sport&order-by=newest&q=f1%20AND%20NOT%20tour-de-france&api-key=4ba1d878-9a90-4e98-8554-de2a8a5300e7"
 	newsXmlhttp.open("GET", newsApiUrl, true)
 	newsXmlhttp.send()
 })
